@@ -1,1235 +1,335 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Lifetime of Silent Devotion — Dedicated to Sarah</title>
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Google Fonts for Romantic Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
     <style>
-        :root {
-            --bg-canvas: #1c0512;
-            --bg-overlay: rgba(38, 10, 26, 0.88);
-            --book-cover-bg: linear-gradient(135deg, #800f2f 0%, #c9184a 50%, #590d22 100%);
-            --book-cover-border: #e5b84b;
-            --page-bg: #fff0f3;
-            --page-text: #4a0e17;
-            --page-border: #ffccd5;
-            --accent-pink: #ff4d6d;
-            --accent-gold: #e5b84b;
-            --accent-gold-glow: rgba(229, 184, 75, 0.38);
-            --spine-shadow: rgba(89, 13, 34, 0.35);
-            --paper-shadow: rgba(40, 5, 18, 0.5);
-            --font-serif: 'Cormorant Garamond', serif;
-            --font-display: 'Playfair Display', serif;
-            --font-script: 'Great Vibes', cursive;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .theme-soft-rose {
-            --bg-canvas: #fce4ec;
-            --bg-overlay: rgba(255, 240, 243, 0.88);
-            --book-cover-bg: linear-gradient(135deg, #a4133c 0%, #ff4d6d 50%, #800f2f 100%);
-            --book-cover-border: #e5b84b;
-            --page-bg: #ffffff;
-            --page-text: #4a0e17;
-            --page-border: #ffccd5;
-            --accent-pink: #c9184a;
-            --accent-gold: #d5a638;
-            --accent-gold-glow: rgba(213, 166, 56, 0.3);
-            --spine-shadow: rgba(128, 15, 47, 0.2);
-            --paper-shadow: rgba(128, 15, 47, 0.25);
-        }
-
-        .theme-midnight-velvet {
-            --bg-canvas: #120309;
-            --bg-overlay: rgba(25, 5, 15, 0.9);
-            --book-cover-bg: linear-gradient(135deg, #38040e 0%, #590d22 50%, #25020a 100%);
-            --book-cover-border: #e5b84b;
-            --page-bg: #220710;
-            --page-text: #ffccd5;
-            --page-border: #590d22;
-            --accent-pink: #ff758f;
-            --accent-gold: #e5b84b;
-            --accent-gold-glow: rgba(229, 184, 75, 0.3);
-            --spine-shadow: rgba(0, 0, 0, 0.8);
-            --paper-shadow: rgba(0, 0, 0, 0.7);
-        }
-
-        .theme-vintage-parchment {
-            --bg-canvas: #2b1d14;
-            --bg-overlay: rgba(43, 29, 20, 0.9);
-            --book-cover-bg: linear-gradient(135deg, #5c1825 0%, #7a1f31 50%, #3d0d16 100%);
-            --book-cover-border: #c99832;
-            --page-bg: #fdf8eb;
-            --page-text: #3d1c06;
-            --page-border: #e6d3a7;
-            --accent-pink: #c9184a;
-            --accent-gold: #c99832;
-            --accent-gold-glow: rgba(201, 152, 50, 0.3);
-            --spine-shadow: rgba(61, 28, 6, 0.5);
-            --paper-shadow: rgba(0, 0, 0, 0.6);
-        }
-
-        body {
-            background-color: var(--bg-canvas);
-            color: var(--page-text);
-            font-family: var(--font-serif);
-            transition: background-color 0.5s ease, color 0.5s ease;
-            user-select: none;
-            -webkit-user-select: none;
-            overflow-x: hidden;
-            touch-action: pan-y;
-        }
-
-        .font-script { font-family: var(--font-script); }
-        .font-display { font-family: var(--font-display); }
-        .font-serif { font-family: var(--font-serif); }
-
-        .gold-foil-text {
-            background: linear-gradient(115deg, #9b681c 0%, #f8e7a1 18%, #c8952d 34%, #fff4c4 48%, #b57c1f 64%, #f2d77e 82%, #9b681c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 1px 10px var(--accent-gold-glow);
-            background-size: 180% 100%;
-            animation: gold-shimmer 8s ease-in-out infinite alternate;
-        }
-
-        @keyframes gold-shimmer {
-            from { background-position: 0% 50%; }
-            to { background-position: 100% 50%; }
-        }
-
-        .gold-border {
-            border-color: var(--accent-gold);
-            box-shadow: inset 0 0 0 3px rgba(255, 232, 161, 0.18), 0 0 18px var(--accent-gold-glow);
-        }
-
-        .book-viewport {
-            perspective: 2200px;
-            perspective-origin: 50% 50%;
-        }
-
-        .book-container {
-            transform-style: preserve-3d;
-            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
-            filter: drop-shadow(0 22px 26px rgba(25, 2, 13, 0.28));
-        }
-
-        .page-sheet {
-            background-color: var(--page-bg);
-            background-image: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.24), transparent 64%), linear-gradient(110deg, rgba(255, 143, 171, 0.025), transparent 24%, rgba(255, 255, 255, 0.08), transparent 78%);
-            border: 1px solid var(--page-border);
-            box-shadow: inset 0 0 40px rgba(128, 15, 47, 0.05), inset 0 0 0 5px rgba(255, 255, 255, 0.18), 0 10px 40px var(--paper-shadow);
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
-            transform-origin: left center;
-        }
-
-        .right-page::after {
-            content: "";
-            position: absolute;
-            top: 12px;
-            right: 4px;
-            bottom: 12px;
-            width: 2px;
-            border-radius: 2px;
-            background: linear-gradient(180deg, transparent, var(--accent-gold), var(--accent-pink), var(--accent-gold), transparent);
-            opacity: 0.55;
-            pointer-events: none;
-        }
-
-        .fairytale-cover {
-            isolation: isolate;
-            background-image: radial-gradient(ellipse at 50% 35%, rgba(255, 180, 201, 0.2), transparent 55%), var(--book-cover-bg) !important;
-        }
-
-        .fairytale-cover::before,
-        .fairytale-cover::after {
-            content: "";
-            position: absolute;
-            inset: 8px;
-            z-index: -1;
-            border: 1px solid rgba(255, 225, 151, 0.76);
-            border-radius: 0.72rem;
-            pointer-events: none;
-        }
-
-        .fairytale-cover::after {
-            inset: 15px;
-            border-color: rgba(255, 225, 151, 0.32);
-            border-radius: 0.55rem;
-        }
-
-        .cover-sparkles {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            overflow: hidden;
-            color: #ffe7a0;
-            text-shadow: 0 0 12px rgba(255, 221, 133, 0.75);
-        }
-
-        .cover-sparkles::before,
-        .cover-sparkles::after {
-            position: absolute;
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            letter-spacing: 0.8rem;
-            opacity: 0.78;
-            content: "✦ · ✧";
-        }
-
-        .cover-sparkles::before {
-            top: 17%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .cover-sparkles::after {
-            bottom: 18%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .chapter-ornament {
-            height: 1px;
-            width: min(10rem, 70%);
-            margin: 0.65rem auto 0;
-            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
-            position: relative;
-        }
-
-        .chapter-ornament::after {
-            content: "✦";
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            padding: 0 0.55rem;
-            color: var(--accent-gold);
-            background: var(--page-bg);
-            transform: translate(-50%, -50%);
-            font-size: 0.7rem;
-        }
-
-        .corner-cap {
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            pointer-events: none;
-            z-index: 25;
-            opacity: 0.85;
-        }
-        .corner-top-left { top: 0; left: 0; border-top: 3px solid var(--accent-gold); border-left: 3px solid var(--accent-gold); border-top-left-radius: 6px; }
-        .corner-top-right { top: 0; right: 0; border-top: 3px solid var(--accent-gold); border-right: 3px solid var(--accent-gold); border-top-right-radius: 6px; }
-        .corner-bottom-left { bottom: 0; left: 0; border-bottom: 3px solid var(--accent-gold); border-left: 3px solid var(--accent-gold); border-bottom-left-radius: 6px; }
-        .corner-bottom-right { bottom: 0; right: 0; border-bottom: 3px solid var(--accent-gold); border-right: 3px solid var(--accent-gold); border-bottom-right-radius: 6px; }
-
-        .page-flipper {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            width: 50%;
-            z-index: 35;
-            transform-style: preserve-3d;
-            transform-origin: left center;
-            pointer-events: none;
-            display: none;
-        }
-
-        .page-flipper.is-turning {
-            will-change: transform;
-        }
-
-        .page-flipper.single-page-flip {
+        html, body {
             width: 100%;
-        }
-
-        .page-flipper.flip-prev {
-            left: 0;
-            transform-origin: right center;
-        }
-
-        .page-flipper.flip-next {
-            right: 0;
-            transform-origin: left center;
-        }
-
-        .flipper-face {
-            position: absolute;
-            inset: 0;
-            background-color: var(--page-bg);
-            border: 1px solid var(--page-border);
-            backface-visibility: hidden;
+            height: 100%;
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background: linear-gradient(135deg, #1a0a15 0%, #2d0f1f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
             overflow: hidden;
-            box-shadow: 0 12px 35px var(--paper-shadow);
         }
 
-        .flipper-face.back {
-            transform: rotateY(180deg);
-        }
-
-        .spine-crease {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 28px;
-            z-index: 28;
-            pointer-events: none;
-        }
-
-        .spine-crease-dual {
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(90deg, 
-                rgba(89, 13, 34, 0.32) 0%, 
-                rgba(89, 13, 34, 0.1) 40%, 
-                rgba(89, 13, 34, 0.32) 50%, 
-                rgba(89, 13, 34, 0.1) 60%, 
-                rgba(89, 13, 34, 0.32) 100%);
-        }
-
-        .spine-crease-single {
-            left: 0;
-            background: linear-gradient(90deg, rgba(89, 13, 34, 0.25) 0%, rgba(89, 13, 34, 0) 100%);
-        }
-
-        .ribbon-bookmark {
-            position: absolute;
-            top: -2px;
-            right: 28px;
-            width: 24px;
-            height: 58px;
-            background: linear-gradient(180deg, #ff4d6d 0%, #c9184a 100%);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
-            box-shadow: 0 6px 14px rgba(128, 15, 47, 0.4);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            z-index: 40;
-            cursor: pointer;
-        }
-
-        .ribbon-bookmark:hover {
-            height: 68px;
-        }
-
-        .drop-cap::first-letter {
-            font-family: var(--font-display);
-            font-size: 3.2em;
-            float: left;
-            line-height: 0.75;
-            margin-right: 0.12em;
-            margin-top: 0.08em;
-            color: var(--accent-pink);
-            font-weight: 700;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: rgba(201, 24, 74, 0.25);
-            border-radius: 4px;
-        }
-
-        .dynamic-bend-shadow {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            z-index: 20;
-            opacity: 0;
-            transition: opacity 0.1s linear;
-        }
-
-        .eq-bar {
-            width: 3px;
-            background-color: var(--accent-pink);
-            border-radius: 2px;
-            animation: eqBounce 1.2s ease-in-out infinite alternate;
-        }
-        .eq-bar:nth-child(1) { height: 12px; animation-delay: 0.1s; }
-        .eq-bar:nth-child(2) { height: 18px; animation-delay: 0.3s; }
-        .eq-bar:nth-child(3) { height: 8px;  animation-delay: 0.2s; }
-        .eq-bar:nth-child(4) { height: 15px; animation-delay: 0.4s; }
-
-        @keyframes eqBounce {
-            0% { transform: scaleY(0.3); }
-            100% { transform: scaleY(1.1); }
-        }
-
-        .eq-paused .eq-bar {
-            animation-play-state: paused;
-            transform: scaleY(0.3);
-        }
-
-        #bgCanvas {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        body {
-            background-image:
-                radial-gradient(ellipse at 12% 18%, rgba(255, 117, 143, 0.18), transparent 34%),
-                radial-gradient(ellipse at 88% 82%, rgba(255, 143, 171, 0.14), transparent 32%);
-        }
-
-        body::before,
-        body::after {
-            position: fixed;
-            z-index: 1;
-            color: rgba(255, 143, 171, 0.38);
-            font-family: var(--font-script);
-            pointer-events: none;
-            animation: float-heart 6s ease-in-out infinite;
-        }
-
-        body::before {
-            content: "♡";
-            left: 2.5vw;
-            top: 18vh;
-            font-size: clamp(2rem, 5vw, 4rem);
-        }
-
-        body::after {
-            content: "♥";
-            right: 3vw;
-            bottom: 15vh;
-            font-size: clamp(1.5rem, 4vw, 3rem);
-            animation-delay: -3s;
-        }
-
-        @keyframes float-heart {
-            0%, 100% { transform: translateY(0) rotate(-8deg); }
-            50% { transform: translateY(-12px) rotate(8deg); }
-        }
-
-        .music-player-frame {
-            display: none;
-        }
-
-        #pageHearts {
-            position: absolute;
-            inset: 0;
-            z-index: 31;
-            overflow: hidden;
-            pointer-events: none;
-            border-radius: inherit;
-        }
-
-        .page-heart {
-            position: absolute;
-            color: #ff4d8d;
-            font-family: Arial, sans-serif;
-            line-height: 1;
-            opacity: 0.24;
-            pointer-events: auto;
-            touch-action: none;
-            user-select: none;
-            -webkit-user-select: none;
-            cursor: grab;
-            text-shadow: 0 2px 12px rgba(255, 77, 141, 0.55);
-            animation: page-heart-drift 7s ease-in-out infinite;
-            will-change: transform, opacity;
-        }
-
-        .page-heart:nth-child(1) { left: 11%; top: 20%; font-size: 23px; animation-delay: -1.4s; }
-        .page-heart:nth-child(2) { left: 83%; top: 28%; font-size: 19px; animation-delay: -4.2s; }
-        .page-heart:nth-child(3) { left: 18%; top: 76%; font-size: 17px; animation-delay: -2.8s; }
-        .page-heart:nth-child(4) { left: 76%; top: 70%; font-size: 25px; animation-delay: -5.5s; }
-        .page-heart:nth-child(5) { left: 52%; top: 12%; font-size: 16px; animation-delay: -3.3s; }
-        .page-heart:nth-child(6) { left: 60%; top: 88%; font-size: 20px; animation-delay: -0.5s; }
-        .page-heart:nth-child(7) { left: 39%; top: 35%; font-size: 15px; animation-delay: -2.1s; }
-        .page-heart:nth-child(8) { left: 91%; top: 52%; font-size: 18px; animation-delay: -4.8s; }
-        .page-heart:nth-child(9) { left: 7%; top: 54%; font-size: 16px; animation-delay: -0.9s; }
-
-        .page-heart.is-dragging {
-            animation: none;
-            opacity: 0.95;
-            cursor: grabbing;
-            z-index: 2;
-            filter: drop-shadow(0 0 8px rgba(255, 77, 141, 0.9));
-        }
-
-        @keyframes page-heart-drift {
-            0%, 100% { opacity: 0.18; transform: translate3d(0, 10px, 0) scale(0.82) rotate(-10deg); }
-            50% { opacity: 0.52; transform: translate3d(7px, -14px, 0) scale(1.05) rotate(10deg); }
-        }
-
-        .stanza-card {
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            background: rgba(28, 5, 18, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            border: 2px solid rgba(229, 184, 75, 0.4);
             position: relative;
-            padding: 0.65rem 0.75rem;
-            border: 1px solid rgba(201, 24, 74, 0.1);
-            border-radius: 0.9rem;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 204, 213, 0.16));
-            box-shadow: 0 5px 16px rgba(89, 13, 34, 0.045);
+            overflow: hidden;
         }
 
-        .theme-midnight-velvet .stanza-card {
-            background: linear-gradient(135deg, rgba(255, 204, 213, 0.08), rgba(89, 13, 34, 0.18));
-            border-color: rgba(255, 204, 213, 0.12);
+        .header {
+            text-align: center;
+            padding: 25px 20px 15px;
+            background: rgba(10, 5, 12, 0.9);
+            border-bottom: 1px solid rgba(229, 184, 75, 0.2);
         }
 
-        .theme-vintage-parchment .stanza-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(230, 211, 167, 0.2));
-            border-color: rgba(125, 82, 32, 0.12);
+        .header h1 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            letter-spacing: 2px;
+            color: #e5b84b;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            font-weight: 600;
         }
 
-        @media (max-width: 640px) {
-            body.h-full {
-                min-height: 100vh;
-                min-height: 100dvh;
-                height: 100vh;
-                height: 100dvh;
-                overflow: hidden;
-                overscroll-behavior-y: contain;
-            }
-
-            #bookViewport {
-                min-height: 0;
-                padding: 0.5rem 0.5rem 5.75rem;
-            }
-
-            body.tts-active #bookViewport {
-                padding-bottom: 11rem;
-            }
-
-            #bookStage {
-                height: clamp(300px, 62vh, 660px);
-                height: clamp(300px, 62dvh, 660px);
-                min-height: 0;
-                max-height: 660px;
-                touch-action: pan-y pinch-zoom;
-            }
-
-            header {
-                padding-top: max(0.5rem, env(safe-area-inset-top));
-            }
-
-            #rightPageSheet {
-                border-radius: 1rem;
-                border-left-width: 1px;
-                border-right-width: 2px;
-                box-shadow: inset -5px 0 10px rgba(89, 13, 34, 0.055), inset 0 0 0 5px rgba(255, 255, 255, 0.18), 0 10px 32px var(--paper-shadow);
-            }
-
-            #prevEdgeTap,
-            #nextEdgeTap {
-                display: none;
-            }
-
-            .page-heart {
-                font-size: 19px;
-            }
-
-            .page-heart:nth-child(4) {
-                font-size: 22px;
-            }
-
-            .page-sheet,
-            .flipper-face {
-                padding: 0.85rem;
-            }
-
-            .page-sheet {
-                user-select: text;
-                -webkit-user-select: text;
-            }
-
-            body.h-full > footer {
-                position: fixed;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                padding: 0.5rem 0.75rem max(0.5rem, env(safe-area-inset-bottom));
-                gap: 0.4rem;
-                border-top-color: rgba(255, 143, 171, 0.25);
-                box-shadow: 0 -10px 30px rgba(28, 5, 18, 0.18);
-            }
-
-            #pageNavigation {
-                display: grid;
-                grid-template-columns: 48px minmax(0, 1fr) 48px;
-                gap: 0.5rem;
-                align-items: center;
-                width: 100%;
-            }
-
-            #pageNavigation > button {
-                min-width: 44px;
-                min-height: 48px;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                border: 1px solid rgba(255, 143, 171, 0.38);
-                border-radius: 1rem;
-                background: linear-gradient(145deg, rgba(255, 77, 141, 0.28), rgba(201, 24, 74, 0.22));
-                box-shadow: 0 5px 14px rgba(89, 13, 34, 0.22);
-            }
-
-            body.h-full #viewModeBtn {
-                display: none;
-            }
-
-            #pageNavigation > div {
-                max-width: none;
-                min-width: 0;
-                flex-direction: row;
-                gap: 0.5rem;
-            }
-
-            #pageNavigation > div > div {
-                min-width: 80px;
-            }
-
-            #pageScrubber {
-                min-height: 24px;
-                touch-action: pan-x;
-            }
-
-            #ttsControlBar {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-
-            #ttsControlBar > div:last-child {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-
-            .page-sheet {
-                overscroll-behavior: contain;
-                -webkit-overflow-scrolling: touch;
-            }
+        .header p {
+            font-size: 0.9rem;
+            color: #ff4d6d;
+            letter-spacing: 1px;
+            font-style: italic;
         }
 
-        @media (max-width: 360px) {
-            #pageNavigation {
-                grid-template-columns: 44px minmax(0, 1fr) 44px;
-                gap: 0.35rem;
-            }
-
-            #ttsControlBar {
-                padding-inline: 0.65rem;
-            }
+        .content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            body::before,
-            body::after,
-            .page-heart {
-                animation: none;
-            }
+        .book {
+            width: 100%;
+            max-width: 900px;
+            height: 100%;
+            background: linear-gradient(135deg, #a4133c 0%, #ff4d6d 50%, #7d0a2d 100%);
+            border-radius: 15px;
+            border: 3px solid #e5b84b;
+            box-shadow: 
+                inset 0 0 0 2px rgba(255, 232, 161, 0.3),
+                0 30px 60px rgba(0, 0, 0, 0.6);
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
 
-            #bgCanvas {
-                display: none;
-            }
+        .book::before {
+            content: '';
+            position: absolute;
+            inset: 15px;
+            border: 1px solid rgba(255, 221, 151, 0.5);
+            border-radius: 12px;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-            .page-heart {
-                opacity: 0.16;
-            }
+        .page-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            position: relative;
+            z-index: 2;
+        }
 
-            .gold-foil-text {
-                animation: none;
-                background-position: 50% 50%;
-            }
+        .page {
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .chapter-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: #fff0f3;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .poem-text {
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            line-height: 1.8;
+            color: #f7e3e4;
+            max-width: 700px;
+            margin: 0 auto;
+            letter-spacing: 0.5px;
+        }
+
+        .poem-text p {
+            margin-bottom: 12px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            background: rgba(10, 5, 12, 0.9);
+            border-top: 1px solid rgba(229, 184, 75, 0.2);
+        }
+
+        button {
+            background: rgba(229, 184, 75, 0.15);
+            border: 1px solid rgba(229, 184, 75, 0.5);
+            color: #e5b84b;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button:hover:not(:disabled) {
+            background: rgba(229, 184, 75, 0.35);
+            transform: scale(1.1);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .page-indicator {
+            font-size: 0.95rem;
+            color: #e5b84b;
+            letter-spacing: 1px;
+            min-width: 80px;
         }
     </style>
 </head>
-<body class="h-full flex flex-col justify-between relative overflow-hidden select-none">
-
-    <canvas id="bgCanvas"></canvas>
-
-    <div class="w-full h-1 bg-rose-200/20 fixed top-0 left-0 z-50">
-        <div id="readingProgress" class="h-full transition-all duration-300" style="width: 0%; background: linear-gradient(90deg, #ff8fab, #ff4d8d);"></div>
-    </div>
-
-    <header class="w-full px-3 sm:px-5 py-2.5 flex items-center justify-between border-b border-rose-900/10 z-40 backdrop-blur-md relative" style="background-color: var(--bg-overlay);">
-        <div class="flex items-center space-x-1.5 sm:space-x-3">
-            <button id="tocBtn" class="p-2 rounded-xl hover:bg-rose-500/10 transition flex items-center space-x-1.5" title="Table of Contents">
-                <i data-lucide="book-open" class="w-5 h-5 text-rose-500"></i>
-                <span class="text-xs font-semibold hidden sm:inline">Contents</span>
-            </button>
-            <button id="bookmarkBtn" class="p-2 rounded-xl hover:bg-rose-500/10 transition flex items-center space-x-1.5" title="Saved Bookmarks">
-                <i data-lucide="bookmark" class="w-5 h-5 text-rose-500"></i>
-                <span class="text-xs font-semibold hidden sm:inline">Bookmarks</span>
-            </button>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A Lifetime of Silent Devotion</h1>
+            <p>Dedicated to Sarah</p>
         </div>
 
-        <div class="text-center truncate px-2 max-w-[38vw] sm:max-w-md">
-            <h1 class="text-xs sm:text-sm font-bold tracking-widest uppercase truncate gold-foil-text font-display">A Lifetime of Silent Devotion</h1>
-            <p id="headerChapterName" class="text-[11px] italic opacity-90 truncate gold-foil-text">Dedicated to Sarah</p>
-        </div>
-
-        <div class="flex items-center space-x-1 sm:space-x-2">
-            <button id="musicToggleBtn" class="px-2.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-400/30 transition flex items-center space-x-2" title="Play or pause Sarah's song">
-                <div id="eqContainer" class="flex items-end space-x-0.5 h-4 eq-paused">
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                    <div class="eq-bar"></div>
-                </div>
-                <span id="musicBtnLabel" class="text-[11px] font-bold text-rose-200 hidden md:inline">Sarah</span>
-            </button>
-
-            <button id="ttsPlayBtn" class="p-2 rounded-xl hover:bg-rose-500/10 transition flex items-center space-x-1" title="Read Page Out Loud">
-                <i data-lucide="volume-2" class="w-5 h-5 text-rose-400"></i>
-            </button>
-            <button id="soundToggleBtn" class="p-2 rounded-xl hover:bg-rose-500/10 transition" title="Page Flip Sound FX">
-                <i data-lucide="sparkles" id="soundIcon" class="w-5 h-5 text-rose-400"></i>
-            </button>
-            <button id="themeCustomizerBtn" class="p-2 rounded-xl hover:bg-rose-500/10 transition" title="Reader Settings">
-                <i data-lucide="palette" class="w-5 h-5 text-rose-400"></i>
-            </button>
-        </div>
-    </header>
-
-    <audio id="backgroundSong" class="music-player-frame" preload="metadata" loop>
-        <source src="../../sarah%20(2).mp3" type="audio/mpeg">
-        Your browser does not support audio playback.
-    </audio>
-
-    <main id="bookViewport" class="book-viewport flex-1 relative flex items-center justify-center p-2 sm:p-6 overflow-hidden my-auto z-10">
-        <div id="prevEdgeTap" class="absolute left-0 top-0 bottom-0 w-12 sm:w-20 z-30 flex items-center justify-start pl-2 cursor-pointer group opacity-0 hover:opacity-100 transition-opacity">
-            <div class="p-2.5 rounded-full bg-rose-950/60 text-white backdrop-blur group-hover:scale-110 transition-transform shadow-lg border border-rose-400/30">
-                <i data-lucide="chevron-left" class="w-6 h-6"></i>
-            </div>
-        </div>
-
-        <div id="nextEdgeTap" class="absolute right-0 top-0 bottom-0 w-12 sm:w-20 z-30 flex items-center justify-end pr-2 cursor-pointer group opacity-0 hover:opacity-100 transition-opacity">
-            <div class="p-2.5 rounded-full bg-rose-950/60 text-white backdrop-blur group-hover:scale-110 transition-transform shadow-lg border border-rose-400/30">
-                <i data-lucide="chevron-right" class="w-6 h-6"></i>
-            </div>
-        </div>
-
-        <div id="bookStage" class="book-container relative flex items-center justify-center w-full max-w-5xl h-[76vh] max-h-[820px] min-h-[460px] rounded-r-2xl rounded-l-2xl shadow-2xl transition-transform duration-300">
-            <div id="activeRibbonBookmark" class="ribbon-bookmark hidden" title="Page Bookmarked"></div>
-
-            <div id="leftPageSheet" class="page-sheet left-page relative w-1/2 h-full flex flex-col justify-between p-6 sm:p-12 rounded-l-2xl overflow-hidden border-r-0">
-                <div class="corner-cap corner-top-left"></div>
-                <div class="corner-cap corner-bottom-left"></div>
-                <div id="leftPageContent" class="h-full flex flex-col justify-between overflow-y-auto custom-scrollbar"></div>
-                <div class="flex justify-between items-center text-xs opacity-60 mt-3 pt-2 border-t border-rose-900/10 font-serif">
-                    <span id="leftChapterFooter" class="truncate max-w-[140px] italic gold-foil-text">Title</span>
-                    <span id="leftPageNum" class="font-bold">1</span>
+        <div class="content">
+            <div class="book">
+                <div class="page-wrapper">
+                    <div class="page">
+                        <h2 id="title" class="chapter-title">Chapter 1</h2>
+                        <div id="content" class="poem-text"></div>
+                    </div>
                 </div>
             </div>
-
-            <div id="spineCrease" class="spine-crease spine-crease-dual"></div>
-
-            <div id="rightPageSheet" class="page-sheet right-page relative w-1/2 h-full flex flex-col justify-between p-6 sm:p-12 rounded-r-2xl overflow-hidden">
-                <div class="corner-cap corner-top-right"></div>
-                <div class="corner-cap corner-bottom-right"></div>
-                <div id="rightPageContent" class="h-full flex flex-col justify-between overflow-y-auto custom-scrollbar"></div>
-                <div class="flex justify-between items-center text-xs opacity-60 mt-3 pt-2 border-t border-rose-900/10 font-serif">
-                    <span id="rightPageNum" class="font-bold">2</span>
-                    <span id="rightChapterFooter" class="truncate max-w-[140px] italic gold-foil-text">Chapter</span>
-                </div>
-            </div>
-
-            <div id="pageFlipper" class="page-flipper">
-                <div id="flipperFront" class="flipper-face front p-6 sm:p-12 flex flex-col justify-between">
-                    <div id="flipperFrontContent" class="h-full overflow-hidden"></div>
-                </div>
-                <div id="flipperBack" class="flipper-face back p-6 sm:p-12 flex flex-col justify-between">
-                    <div id="flipperBackContent" class="h-full overflow-hidden"></div>
-                </div>
-            </div>
-
-            <div id="bendShadowOverlay" class="dynamic-bend-shadow"></div>
-            <div id="pageHearts" aria-hidden="true">
-                <span class="page-heart" title="Drag this heart">♥</span>
-                <span class="page-heart" title="Drag this heart">♥</span>
-                <span class="page-heart" title="Drag this heart">♥</span>
-                <span class="page-heart" title="Drag this heart">♥</span>
-                <span class="page-heart" title="Drag this heart">♥</span>
-                <span class="page-heart" title="Drag this heart">♥</span>
-                <span class="page-heart" title="Drag this heart">♥</span>
-                <span class="page-heart" title="Drag this heart">♥</span>
-                <span class="page-heart" title="Drag this heart">♥</span>
-            </div>
-        </div>
-    </main>
-
-    <footer class="w-full px-4 py-3 border-t border-rose-900/10 z-40 backdrop-blur-md flex flex-col space-y-2 relative" style="background-color: var(--bg-overlay);">
-        <div id="ttsControlBar" class="hidden flex items-center justify-between bg-rose-500/10 px-4 py-1.5 rounded-xl text-xs">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="disc" class="w-4 h-4 animate-spin text-rose-400"></i>
-                <span class="font-medium text-rose-200">Reading Verses Out Loud...</span>
-            </div>
-            <div class="flex items-center space-x-3">
-                <label for="ttsVoiceSelect" class="text-[10px] uppercase font-bold opacity-70">Voice:</label>
-                <select id="ttsVoiceSelect" aria-label="Narration voice" class="max-w-[34vw] bg-transparent font-bold cursor-pointer outline-none text-rose-200">
-                    <option value="">Loading voices…</option>
-                </select>
-                <label class="text-[10px] uppercase font-bold opacity-70">Speed:</label>
-                <select id="ttsRateSelect" class="bg-transparent font-bold cursor-pointer outline-none text-rose-200">
-                    <option value="0.75" class="bg-rose-950">0.75x</option>
-                    <option value="0.9" selected class="bg-rose-950">0.9x</option>
-                    <option value="1.0" class="bg-rose-950">1.0x</option>
-                    <option value="1.2" class="bg-rose-950">1.2x</option>
-                    <option value="1.5" class="bg-rose-950">1.5x</option>
-                </select>
-                <button id="ttsPauseBtn" class="p-1 hover:bg-rose-500/20 rounded">
-                    <i data-lucide="square" class="w-4 h-4 text-rose-300"></i>
-                </button>
-            </div>
         </div>
 
-        <div id="pageNavigation" class="flex items-center justify-between space-x-2 sm:space-x-6">
-            <button id="prevBtn" class="p-2.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 active:scale-95 transition" type="button" aria-label="Previous page" title="Previous Page">
-                <i data-lucide="arrow-left" class="w-5 h-5 text-rose-300"></i>
-            </button>
-
-            <div class="flex-1 flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-4 max-w-xl">
-                <input id="pageScrubber" type="range" min="1" max="10" value="1" class="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-rose-900/40 accent-rose-500">
-                <div class="text-xs font-bold whitespace-nowrap min-w-[90px] text-center font-serif text-rose-200">
-                    <span id="pageIndicator">Page 1 of 10</span>
-                </div>
+        <div class="controls">
+            <button id="prev" onclick="previousPage()">❮</button>
+            <div class="page-indicator">
+                <span id="current">1</span> / <span id="total">6</span>
             </div>
-
-            <button id="viewModeBtn" class="p-2.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 transition flex items-center space-x-1" title="Toggle Layout View">
-                <i data-lucide="columns" id="viewModeIcon" class="w-5 h-5 text-rose-300"></i>
-            </button>
-
-            <button id="nextBtn" class="p-2.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 active:scale-95 transition" type="button" aria-label="Next page" title="Next Page">
-                <i data-lucide="arrow-right" class="w-5 h-5 text-rose-300"></i>
-            </button>
-        </div>
-    </footer>
-
-    <div id="tocDrawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] z-50 bg-rose-950/95 text-rose-100 backdrop-blur-xl shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-        <div class="p-4 border-b border-rose-800/20 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="list" class="w-5 h-5 text-rose-400"></i>
-                <h2 class="font-bold text-base font-display">Table of Contents</h2>
-            </div>
-            <button id="closeTocBtn" class="p-1.5 rounded-lg hover:bg-rose-500/20">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-        </div>
-        <div id="tocList" class="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar"></div>
-    </div>
-
-    <div id="bookmarksDrawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] z-50 bg-rose-950/95 text-rose-100 backdrop-blur-xl shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-        <div class="p-4 border-b border-rose-800/20 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="bookmark" class="w-5 h-5 text-rose-400"></i>
-                <h2 class="font-bold text-base font-display">Saved Bookmarks</h2>
-            </div>
-            <button id="closeBookmarksBtn" class="p-1.5 rounded-lg hover:bg-rose-500/20">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-        </div>
-        <div id="bookmarksList" class="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar"></div>
-    </div>
-
-    <div id="themeDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[85vw] z-50 bg-rose-950/95 text-rose-100 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-        <div class="p-4 border-b border-rose-800/20 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="sliders" class="w-5 h-5 text-rose-400"></i>
-                <h2 class="font-bold text-base font-display">Reader Customizer</h2>
-            </div>
-            <button id="closeThemeBtn" class="p-1.5 rounded-lg hover:bg-rose-500/20">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-        </div>
-
-        <div class="flex-1 overflow-y-auto p-5 space-y-6 custom-scrollbar text-sm">
-            <div>
-                <h3 class="font-bold mb-3 uppercase text-xs tracking-wider opacity-70">Color Palette</h3>
-                <div class="grid grid-cols-1 gap-2.5">
-                    <button data-theme="concert-night" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#1c0512] text-[#ffccd5] border-rose-500/30 hover:border-rose-400/60">
-                        <div>
-                            <span class="font-bold text-xs block">Maastricht Concert Night</span>
-                            <span class="text-[10px] opacity-70">Rose & Pink Starlight</span>
-                        </div>
-                        <i data-lucide="heart" class="w-4 h-4 text-pink-300"></i>
-                    </button>
-                    <button data-theme="soft-rose" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#fff0f3] text-[#4a0e17] border-rose-300/80 hover:border-rose-400/90">
-                        <div>
-                            <span class="font-bold text-xs block">Soft Rose Pink</span>
-                            <span class="text-[10px] opacity-70">Romantic Blush Velvet</span>
-                        </div>
-                        <i data-lucide="heart" class="w-4 h-4 text-rose-600"></i>
-                    </button>
-                    <button data-theme="midnight-velvet" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#220710] text-[#ffccd5] border-rose-600/50 hover:border-rose-400/70">
-                        <div>
-                            <span class="font-bold text-xs block">Starry Midnight</span>
-                            <span class="text-[10px] opacity-70">Deep Obsidian Glow</span>
-                        </div>
-                        <i data-lucide="moon" class="w-4 h-4 text-rose-300"></i>
-                    </button>
-                    <button data-theme="vintage-parchment" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#fdf8eb] text-[#3d1c06] border-amber-300/70 hover:border-amber-400/90">
-                        <div>
-                            <span class="font-bold text-xs block">Vintage Parchment</span>
-                            <span class="text-[10px] opacity-70">Warm Antique Paper</span>
-                        </div>
-                        <i data-lucide="heart" class="w-4 h-4 text-rose-600"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div>
-                <div class="flex justify-between items-center mb-2">
-                    <h3 class="font-bold uppercase text-xs tracking-wider opacity-70">Font Size</h3>
-                    <span id="fontSizeLabel" class="font-semibold text-xs text-rose-300">100%</span>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <button id="fontDecBtn" class="p-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 font-bold text-sm flex-1">-</button>
-                    <button id="fontResetBtn" class="p-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-xs flex-1">Reset</button>
-                    <button id="fontIncBtn" class="p-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 font-bold text-sm flex-1">+</button>
-                </div>
-            </div>
+            <button id="next" onclick="nextPage()">❯</button>
         </div>
     </div>
-
-    <div id="drawerBackdrop" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-40 hidden"></div>
 
     <script>
-        const BOOK_DATA = {
-            title: "A LIFETIME OF SILENT DEVOTION",
-            subtitle: "A Collection of Devotional Verses • Dedicated to Sarah",
-            pages: [
-                {
-                    type: "cover",
-                    chapter: "Front Cover",
-                    title: "A LIFETIME OF SILENT DEVOTION",
-                    subtitle: "A Collection of Devotional Verses",
-                    dedication: "DEDICATED TO SARAH",
-                    badges: ["Faith", "Penance", "Rebuilding", "Unconditional Love"]
-                },
-                {
-                    chapter: "Introduction",
-                    type: "intro",
-                    title: "Introduction & Dedication",
-                    content: `
-                        <div class="text-center mb-4">
-                            <span class="font-script text-3xl text-rose-600 block">Dedicated to Sarah</span>
-                            <div class="w-16 h-0.5 bg-rose-300 mx-auto my-2"></div>
-                        </div>
-                        <p class="drop-cap leading-relaxed mb-4">You may see that I do not know about emotion—yes. But as I was writing this book, I tried to learn more about this. And I learned that a man doesn't just protect his woman from the world; he protects her from his own words that burn.</p>
-                        <p class="leading-relaxed mb-4">I learned that love is not just a feeling, it is responsibility. I learned that if I claim to love you, then I must be stronger than my pride, gentler than my fear, and more honest than my silence.</p>
-                        <blockquote class="border-l-2 border-rose-400 pl-4 italic my-4 text-rose-800/90 font-serif">"I lead her and she returns it. I put effort into her and she mirrors it. That is how love becomes a home, not a wound."</blockquote>
-                        <p class="text-right font-script text-2xl text-rose-700 mt-6">— Yours, in Silent Devotion</p>
-                    `
-                },
-                {
-                    chapter: "Table of Contents",
-                    type: "toc",
-                    title: "Table of Contents",
-                    content: `
-                        <div class="text-center mb-6">
-                            <h2 class="font-display font-bold text-xl uppercase tracking-widest gold-foil-text">Index of Verses</h2>
-                            <p class="text-xs italic opacity-75 mt-1">Five Chapters of Faith, Penance & Love</p>
-                        </div>
-                        <div class="space-y-3 font-serif">
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER I</span><span class="text-xs italic opacity-70">July 07, 2024</span><span class="font-bold text-xs">Page 4</span></div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER II</span><span class="text-xs italic opacity-70">Gentle Soul Behind the Silence</span><span class="font-bold text-xs">Page 5</span></div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER III</span><span class="text-xs italic opacity-70">The Weight of My Remorse</span><span class="font-bold text-xs">Page 6</span></div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER IV</span><span class="text-xs italic opacity-70">Rebuilding in the Silence</span><span class="font-bold text-xs">Page 7</span></div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER V</span><span class="text-xs italic opacity-70">You Are My Whole World's Light</span><span class="font-bold text-xs">Page 8</span></div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER VI</span><span class="text-xs italic opacity-70">The Last Poem</span><span class="font-bold text-xs">Page 9</span></div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">EPILOGUE</span><span class="text-xs italic opacity-70">Heart Vow to Sarah</span><span class="font-bold text-xs">Page 10</span></div>
-                        </div>
-                    `
-                },
-                {
-                    chapter: "CHAPTER I",
-                    type: "poem",
-                    title: "July 07, 2024",
-                    content: `
-                        <div class="text-center mb-4">
-                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER I</h2>
-                            <p class="text-xs italic opacity-75">July 07, 2024</p>
-                        </div>
-                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
-                            <p>On July seventh, twenty-twenty-four,<br>My life was changed forever to the core.<br>Before you came, my heart was dead inside,<br>An empty shell washed up upon the tide.</p>
-                            <p>I did not care for anything at all,<br>Just drifting numb, waiting for life to fall.<br>Then suddenly, my eyes searched through the crowd,<br>Ignoring every face and voice too loud.</p>
-                            <p>I did not need for you to look at me,<br>Just seeing you was all I wished to see.<br>Your gentle essence woke my heart inside,<br>And brought to light the love I could not hide.</p>
-                            <p>On Sunday mornings, how I’d wait and pray,<br>Hoping your presence would brighten up my day.<br>To watch you walk into that quiet place,<br>And feel the sweet essence of your grace.</p>
-                        </div>
-                    `
-                },
-                {
-                    chapter: "CHAPTER II",
-                    type: "poem",
-                    title: "Gentle Soul Behind the Silence",
-                    content: `
-                        <div class="text-center mb-4">
-                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER II</h2>
-                            <p class="text-xs italic opacity-75">Gentle Soul Behind the Silence</p>
-                        </div>
-                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
-                            <p>At first I thought your heart was cold and still,<br>A distant wall I could not reach at will.<br>But looking close, I saw the truth inside:<br>A gentle, tender soul you try to hide.</p>
-                            <p>I worked through long and weary nights alone,<br>To earn a small, sweet gift to call my own.<br>Not trying to buy your heart or win your glance,<br>Just letting you know I’m here, given the chance.</p>
-                            <p>I threw my foolish pride down to the floor,<br>My dignity meant nothing anymore.<br>I’d lose my self-respect so willingly,<br>If it meant you could feel my loyalty.</p>
-                            <p>I tried to write your letters from my heart,<br>But stumbled over words right from the start.<br>I felt so small, so bad at every line,<br>Fearing my clumsy thoughts would never shine.</p>
-                        </div>
-                    `
-                },
-                {
-                    chapter: "CHAPTER III",
-                    type: "poem",
-                    title: "The Weight of My Remorse",
-                    content: `
-                        <div class="text-center mb-4">
-                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER III</h2>
-                            <p class="text-xs italic opacity-75">The Weight of My Remorse</p>
-                        </div>
-                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
-                            <p>I am so sorry for the tears I caused your eyes to shed,<br>for every single careless word my foolish lips have said.<br>I look back at the past and ask: why did I cause you pain?<br>Why did I break the gentlest heart and leave you in the rain?</p>
-                            <p>If I could only turn back time and reach that yesterday,<br>I’d fix every mistake I made and wipe your grief away.<br>I would do everything I could to treat your heart so right,<br>and guard your fragile, sweet soul through every day and night.</p>
-                            <p>Instead, this bitter, heavy guilt will hunt me through my days,<br>a dark and quiet shadow that will follow all my ways.<br>There is no valid reason for the damage I have done,<br>I hurt the sweetest, softest soul beneath the morning sun.</p>
-                            <p>I hate the foolish, selfish man I proved myself to be,<br>and for the sorrow that I brought, I ask no sympathy.<br>I do not ask to win you back or beg for your embrace,<br>I only want to own my faults and honor your sweet grace.</p>
-                        </div>
-                    `
-                },
-                {
-                    chapter: "CHAPTER IV",
-                    type: "poem",
-                    title: "Rebuilding in the Silence",
-                    content: `
-                        <div class="text-center mb-4">
-                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER IV</h2>
-                            <p class="text-xs italic opacity-75">Rebuilding in the Silence</p>
-                        </div>
-                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
-                            <p>With God beside my steps, I walk this quiet ground,<br>rebuilding who I am where humble grace is found.<br>I learn new skills each day to make my mind explain,<br>and strive to build a life beneath His guiding hand.</p>
-                            <p>Whenever something new or grand comes in my days,<br>I rush with joyful thoughts to tell you right away.<br>Then suddenly I stop, as silence hits me clear,<br>remembering we are gone, and you no longer hear.</p>
-                            <p>Yet memories of us still keep my fire bright,<br>a holy, burning flame that warms my lonely night.<br>No woman on this earth could ever take your place,<br>no time can ever fade the soft light of your face.</p>
-                            <p>Even if years pass by and you find someone new,<br>my heart’s one true desire stays forever bound to you.<br>I’m breaking down my core, rebuilding from the floor,<br>to be the man of dreams you needed long before.</p>
-                        </div>
-                    `
-                },
-                {
-                    chapter: "CHAPTER V",
-                    type: "poem",
-                    title: "You Are My Whole World's Light",
-                    content: `
-                        <div class="text-center mb-4">
-                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER V</h2>
-                            <p class="text-xs italic opacity-75">You Are My Whole World's Light</p>
-                        </div>
-                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
-                            <p>With God to guide my quiet steps through all the lonely dark,<br>I’ve won so many victories, yet each is just a spark.<br>Though I have gained so much in life and built myself anew,<br>all my success is nothing when I am without you.</p>
-                            <p>For my life’s highest victory, its sweetest golden prize,<br>was standing in the softest light that rests inside your eyes.<br>I never asked to hold your hand or beg for anything more,<br>than just to quietly love the soul I sacredly adore.</p>
-                            <p>I’d trade my whole tomorrow just to be near your place,<br>to look for one short minute on the beauty of your face.<br>I’d give my final breath and all this empty world bestows,<br>just for the sweet essence that your gentle presence shows.</p>
-                            <p>Yet sweeter than a smile that shines so beautiful and bright,<br>your mind is like a sacred garden filled with peace and light.<br>The pure and tender essence of your heart is so refined,<br>the dearest, most precious home my soul will ever find.</p>
-                            <p>If I could spend my whole life in your soft and gentle view,<br>I would ask for no other dream on earth to ever come true.<br>For one bright look at you, my entire heart was made,<br>and even forever is a love that will never fade.</p>
-                        </div>
-                    `
-                },
-                {
-                    chapter: "CHAPTER VI",
-                    type: "poem",
-                    title: "The Last Poem",
-                    content: `
-                        <div class="text-center mb-5">
-                            <h2 class="font-display text-3xl font-bold gold-foil-text">The Last Poem</h2>
-                        </div>
-                        <div class="space-y-5 leading-relaxed text-rose-900/95 font-serif text-lg">
-                            <p>If I could, I would open my chest and place<br>my heart in your hands, not to shock you,<br>not to prove anything dramatic but so you<br>could feel it yourself.</p>
-                            <p>Feel how it trembles at your name.<br>How it races when you come close.<br>How every single beat whispers you.<br>Because maybe then you would understand<br>that this isn’t just love I speak of<br>it’s something carved into me,<br>something that lives and breathes<br>only for you.</p>
-                            <p>And if that is too much to bear,<br>then let it be gentle.<br>Let it be quiet.<br>Let it be the kind of love<br>that does not ask to be seen,<br>only to be known.</p>
-                            <p>I have loved you in silence,<br>in patience,<br>in the spaces between my breaths,<br>in the ache of remembering<br>your face in every dark room.<br>I have loved you in ways<br>that never needed a stage,<br>only a soul willing to listen.</p>
-                            <p>So if this is my final poem,<br>let it be this:<br>I love you without needing<br>to be understood.<br>I love you without asking<br>for anything in return.<br>I love you as a man<br>who has finally stopped running<br>from the truth.</p>
-                            <p>And the truth is simple:<br>you are the home<br>my heart kept searching for,<br>the light<br>my soul kept praying for,<br>the grace<br>I never deserved,<br>but somehow received.</p>
-                            <p>If I could, I would give you<br>every scar, every prayer,<br>every unfinished sentence,<br>every lonely night,<br>every silent miracle<br>that led me here.<br>Because all of it was only a path<br>back to you.</p>
-                            <p>And if this chapter ends here,<br>then let it end with this:<br>I loved you softly,<br>I loved you deeply,<br>I loved you in the dark<br>when no one was watching,<br>and I will love you<br>even when the world goes quiet.<br>Not because I am perfect,<br>but because you are the only truth<br>that ever made me feel real.</p>
-                            <p>This is my last poem.<br>And it is yours.</p>
-                        </div>
-                    `
-                },
-                {
-                    chapter: "EPILOGUE",
-                    type: "epilogue",
-                    title: "Heart Vow to Sarah",
-                    content: `
-                        <div class="text-center mb-6">
-                            <h2 class="font-script text-5xl text-rose-600">An Eternal Vow</h2>
-                            <div class="chapter-ornament"></div>
-                        </div>
-                        <div class="space-y-4 leading-relaxed text-rose-800/95 font-serif text-base">
-                            <p>To Sarah,<br>my quiet sanctuary, my guiding star,<br>and the purest grace I will ever know.<br>May your life be filled with endless peace, warmth,<br>and joy. May every step you take be softened by love,<br>and every dream you hold bloom beautifully before you.</p>
-                            <p>I vow to remain faithful in every season of my life,<br>to honour your heart with patience, devotion, and truth.<br>Even when time moves on,<br>even when distance changes the shape of the world,<br>my love for you will remain a quiet constant—<br>steadfast, gentle, and true.</p>
-                            <p>For you are not just a chapter in my story,<br>you are the soul I keep returning to.<br>And for as long as my heart beats,<br>I will love you in silence, in devotion,<br>and in the deepest kind of grace.</p>
-                        </div>
-                    `
-                }
-            ]
-        };
+        const chapters = [
+            {
+                title: 'Chapter 1',
+                content: [
+                    'There was a silence in the room that felt like prayer,',
+                    'a quiet kind of devotion that wrapped itself around us',
+                    'without asking for anything but presence.',
+                    '',
+                    'I learned then that love often speaks in stillness.',
+                    'In the way a hand stays warm long after it is gone.',
+                    'In the way a heart keeps a name even when the world is loud.'
+                ]
+            },
+            {
+                title: 'Chapter 2',
+                content: [
+                    'I began to notice the little miracles of you:',
+                    'the soft way your laughter caught in the air,',
+                    'the grace in your patience,',
+                    'the gentleness in your eyes,',
+                    '',
+                    'the way my thoughts turned toward you',
+                    'before I had even realized',
+                    'I was looking for home.'
+                ]
+            },
+            {
+                title: 'Chapter 3',
+                content: [
+                    'Some loves arrive like thunder and leave like rain,',
+                    'but yours arrived like a lantern in winter.',
+                    '',
+                    'It did not ask for spectacle.',
+                    'It simply glowed, steady and sincere,',
+                    'teaching me how to love without fear',
+                    'and how to keep a promise in silence.'
+                ]
+            },
+            {
+                title: 'Chapter 4',
+                content: [
+                    'I carried you in the spaces between words,',
+                    'in the pauses between heartbeats,',
+                    'in the ache of the unspoken.',
+                    '',
+                    'You were not a chapter I finished.',
+                    'You were the breath I was learning to live in.',
+                    '',
+                    'And every day I found myself more devoted',
+                    'to the person who made my soul feel seen.'
+                ]
+            },
+            {
+                title: 'Chapter 5',
+                content: [
+                    'There is a kind of love that does not need applause,',
+                    'only faithfulness.',
+                    '',
+                    'A love that waits without bitterness,',
+                    'that survives distance, confusion, and time,',
+                    'because it was built with tenderness and truth.',
+                    '',
+                    'That is what I have come to know of my devotion to you:',
+                    'it is quiet, deep, and unwavering,',
+                    'like the moon to the tide.'
+                ]
+            },
+            {
+                title: 'The Last Chapter',
+                content: [
+                    'If I could, I would open my chest and place',
+                    'my heart in your hands,',
+                    'not to shock you,',
+                    'not to prove anything dramatic',
+                    'but so you could feel it yourself.',
+                    '',
+                    'Feel how it trembles at your name.',
+                    'How it races when you come close.',
+                    'How every single beat whispers you.',
+                    '',
+                    'Because maybe then you would understand',
+                    'that this isn\'t just love I speak of—',
+                    'it\'s something carved into me,',
+                    'something that lives and breathes',
+                    'only for you.'
+                ]
+            }
+        ];
 
-        let currentPageIndex = 0;
-        let isDualView = window.innerWidth >= 768;
-        let userViewPreference = 'auto';
-        let currentTheme = localStorage.getItem('silentDevotionTheme') || 'concert-night';
-        let fontSizeScale = parseFloat(localStorage.getItem('silentDevotionFontSize')) || 1.0;
-        let bookmarks = JSON.parse(localStorage.getItem('silentDevotionBookmarks')) || [];
+        let currentPage = 0;
 
-        document.body.classList.add(currentTheme === 'soft-rose' ? 'theme-soft-rose' : currentTheme === 'midnight-velvet' ? 'theme-midnight-velvet' : currentTheme === 'vintage-parchment' ? 'theme-vintage-parchment' : '');
-
-        function updateThemeStyles() {
-            document.body.classList.remove('theme-soft-rose', 'theme-midnight-velvet', 'theme-vintage-parchment');
-            if (currentTheme === 'soft-rose') document.body.classList.add('theme-soft-rose');
-            if (currentTheme === 'midnight-velvet') document.body.classList.add('theme-midnight-velvet');
-            if (currentTheme === 'vintage-parchment') document.body.classList.add('theme-vintage-parchment');
-            localStorage.setItem('silentDevotionTheme', currentTheme);
-        }
-
-        function updateFontScale() {
-            document.documentElement.style.fontSize = `${fontSizeScale * 100}%`;
-            localStorage.setItem('silentDevotionFontSize', fontSizeScale.toString());
-            const fontSizeLabel = document.getElementById('fontSizeLabel');
-            if (fontSizeLabel) fontSizeLabel.textContent = `${Math.round(fontSizeScale * 100)}%`;
-        }
-
-        function renderPage(pageIndex) {
-            const leftPage = BOOK_DATA.pages[pageIndex * 2] || null;
-            const rightPage = BOOK_DATA.pages[pageIndex * 2 + 1] || null;
-
-            const renderEntry = (page, targetEl, targetFooter, targetNum, isRight) => {
-                if (!page) {
-                    targetEl.innerHTML = '';
-                    targetFooter.textContent = '';
-                    targetNum.textContent = '';
-                    return;
-                }
-
-                const contentMap = {
-                    cover: `
-                        <div class="fairytale-cover relative h-full w-full rounded-2xl border border-rose-200/50 bg-gradient-to-br from-[#7b1232] via-[#c9184a] to-[#590d22] text-white overflow-hidden p-6 flex flex-col justify-center items-center shadow-2xl">
-                            <div class="cover-sparkles"></div>
-                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,218,148,0.16),transparent_35%)]"></div>
-                            <div class="relative text-center z-10">
-                                <div class="font-script text-5xl md:text-6xl text-rose-100/95 mb-2">A Lifetime</div>
-                                <div class="font-display tracking-[0.25em] text-[11px] uppercase text-rose-200/80 mb-5">of Silent Devotion</div>
-                                <div class="font-display text-2xl md:text-3xl font-semibold text-rose-50">${page.title}</div>
-                                <div class="w-20 h-px bg-rose-200/80 my-5 mx-auto"></div>
-                                <div class="font-serif italic text-rose-100/85 text-base md:text-lg">${page.subtitle}</div>
-                                <div class="mt-8 text-[10px] uppercase tracking-[0.5em] text-rose-100/80">${page.dedication}</div>
-                            </div>
-                        </div>
-                    `,
-                    intro: `
-                        <div class="h-full flex flex-col justify-center">
-                            <div class="text-center mb-4">
-                                <p class="font-script text-4xl text-rose-600">Dedicated to Sarah</p>
-                            </div>
-                            ${page.content}
-                        </div>
-                    `,
-                    toc: page.content,
-                    poem: page.content,
-                    epilogue: page.content
-                };
-
-                targetEl.innerHTML = contentMap[page.type] || page.content || '';
-                targetFooter.textContent = page.chapter || 'Chapter';
-                targetNum.textContent = isRight ? String((pageIndex * 2) + 2) : String((pageIndex * 2) + 1);
-            };
-
-            renderEntry(leftPage, leftPageContent, leftChapterFooter, leftPageNum, false);
-            renderEntry(rightPage, rightPageContent, rightChapterFooter, rightPageNum, true);
-        }
-
-        function updatePageDisplay() {
-            const currentPage = currentPageIndex + 1;
-            pageIndicator.textContent = `Page ${currentPage} of ${BOOK_DATA.pages.length}`;
-            pageScrubber.value = currentPage;
-            pageScrubber.max = BOOK_DATA.pages.length;
-            renderPage(currentPageIndex);
-            const progress = (currentPage / BOOK_DATA.pages.length) * 100;
-            readingProgress.style.width = `${progress}%`;
+        function renderPage() {
+            const chapter = chapters[currentPage];
+            document.getElementById('title').textContent = chapter.title;
+            document.getElementById('content').innerHTML = chapter.content
+                .map(line => line ? `<p>${line}</p>` : '<p style="height: 12px;"></p>')
+                .join('');
+            document.getElementById('current').textContent = currentPage + 1;
+            
+            document.getElementById('prev').disabled = currentPage === 0;
+            document.getElementById('next').disabled = currentPage === chapters.length - 1;
         }
 
         function nextPage() {
-            if (currentPageIndex < BOOK_DATA.pages.length - 1) {
-                currentPageIndex += 1;
-                updatePageDisplay();
+            if (currentPage < chapters.length - 1) {
+                currentPage++;
+                renderPage();
             }
         }
 
-        function prevPage() {
-            if (currentPageIndex > 0) {
-                currentPageIndex -= 1;
-                updatePageDisplay();
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                renderPage();
             }
         }
 
-        function jumpToPage(index) {
-            currentPageIndex = Math.min(Math.max(index, 0), BOOK_DATA.pages.length - 1);
-            updatePageDisplay();
-        }
-
-        document.getElementById('nextBtn').addEventListener('click', nextPage);
-        document.getElementById('prevBtn').addEventListener('click', prevPage);
-        pageScrubber.addEventListener('input', (e) => jumpToPage(Number(e.target.value) - 1));
-
-        document.getElementById('musicToggleBtn').addEventListener('click', () => {
-            const audio = document.getElementById('backgroundSong');
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
-            }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowLeft') previousPage();
         });
 
-        document.getElementById('soundToggleBtn').addEventListener('click', () => {
-            const soundIcon = document.getElementById('soundIcon');
-            soundIcon.classList.toggle('text-rose-300');
-            soundIcon.classList.toggle('text-rose-600');
-        });
-
-        document.getElementById('themeCustomizerBtn').addEventListener('click', () => {
-            document.getElementById('themeDrawer').classList.remove('translate-x-full');
-            document.getElementById('themeDrawer').classList.add('translate-x-0');
-            document.getElementById('drawerBackdrop').classList.remove('hidden');
-        });
-
-        document.getElementById('closeThemeBtn').addEventListener('click', () => {
-            document.getElementById('themeDrawer').classList.add('translate-x-full');
-            document.getElementById('themeDrawer').classList.remove('translate-x-0');
-            document.getElementById('drawerBackdrop').classList.add('hidden');
-        });
-
-        document.getElementById('fontIncBtn').addEventListener('click', () => {
-            fontSizeScale = Math.min(fontSizeScale + 0.1, 1.5);
-            updateFontScale();
-        });
-
-        document.getElementById('fontDecBtn').addEventListener('click', () => {
-            fontSizeScale = Math.max(fontSizeScale - 0.1, 0.8);
-            updateFontScale();
-        });
-
-        document.getElementById('fontResetBtn').addEventListener('click', () => {
-            fontSizeScale = 1;
-            updateFontScale();
-        });
-
-        document.querySelectorAll('.theme-select-btn').forEach((button) => {
-            button.addEventListener('click', () => {
-                currentTheme = button.dataset.theme;
-                updateThemeStyles();
-            });
-        });
-
-        updateThemeStyles();
-        updateFontScale();
-        updatePageDisplay();
+        renderPage();
     </script>
 </body>
 </html>
