@@ -14,7 +14,7 @@
     <!-- Google Fonts for Romantic Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -127,7 +127,7 @@
 
         .page-sheet {
             background-color: var(--page-bg);
-            background-image: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.24), transparent 64%), linear-gradient(110deg, rgba(255, 143, 171, 0.025), transparent 24%, rgba(255, 255, 255, 0.12) 50%, transparent 78%);
+            background-image: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.24), transparent 64%), linear-gradient(110deg, rgba(255, 143, 171, 0.025), transparent 24%, rgba(255, 255, 255, 0.08), transparent 78%);
             border: 1px solid var(--page-border);
             box-shadow: inset 0 0 40px rgba(128, 15, 47, 0.05), inset 0 0 0 5px rgba(255, 255, 255, 0.18), 0 10px 40px var(--paper-shadow);
             transform-style: preserve-3d;
@@ -650,14 +650,12 @@
 </head>
 <body class="h-full flex flex-col justify-between relative overflow-hidden select-none">
 
-    <!-- Background Maastricht Concert Night Canvas -->
     <canvas id="bgCanvas"></canvas>
 
     <div class="w-full h-1 bg-rose-200/20 fixed top-0 left-0 z-50">
         <div id="readingProgress" class="h-full transition-all duration-300" style="width: 0%; background: linear-gradient(90deg, #ff8fab, #ff4d8d);"></div>
     </div>
 
-    <!-- Main Navigation Bar -->
     <header class="w-full px-3 sm:px-5 py-2.5 flex items-center justify-between border-b border-rose-900/10 z-40 backdrop-blur-md relative" style="background-color: var(--bg-overlay);">
         <div class="flex items-center space-x-1.5 sm:space-x-3">
             <button id="tocBtn" class="p-2 rounded-xl hover:bg-rose-500/10 transition flex items-center space-x-1.5" title="Table of Contents">
@@ -676,8 +674,7 @@
         </div>
 
         <div class="flex items-center space-x-1 sm:space-x-2">
-            <!-- Background song toggle -->
-            <button id="musicToggleBtn" class="px-2.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-400/30 transition flex items-center space-x-2" title="Play or pause Sarah's song" aria-pressed="false">
+            <button id="musicToggleBtn" class="px-2.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-400/30 transition flex items-center space-x-2" title="Play or pause Sarah's song">
                 <div id="eqContainer" class="flex items-end space-x-0.5 h-4 eq-paused">
                     <div class="eq-bar"></div>
                     <div class="eq-bar"></div>
@@ -700,66 +697,48 @@
     </header>
 
     <audio id="backgroundSong" class="music-player-frame" preload="metadata" loop>
-            <source src="../../sarah%20(2).mp3" type="audio/mpeg">
-            Your browser does not support audio playback.
+        <source src="../../sarah%20(2).mp3" type="audio/mpeg">
+        Your browser does not support audio playback.
     </audio>
 
     <main id="bookViewport" class="book-viewport flex-1 relative flex items-center justify-center p-2 sm:p-6 overflow-hidden my-auto z-10">
-        
-        <!-- Left Side Drag/Tap Overlay -->
         <div id="prevEdgeTap" class="absolute left-0 top-0 bottom-0 w-12 sm:w-20 z-30 flex items-center justify-start pl-2 cursor-pointer group opacity-0 hover:opacity-100 transition-opacity">
             <div class="p-2.5 rounded-full bg-rose-950/60 text-white backdrop-blur group-hover:scale-110 transition-transform shadow-lg border border-rose-400/30">
                 <i data-lucide="chevron-left" class="w-6 h-6"></i>
             </div>
         </div>
 
-        <!-- Right Side Drag/Tap Overlay -->
         <div id="nextEdgeTap" class="absolute right-0 top-0 bottom-0 w-12 sm:w-20 z-30 flex items-center justify-end pr-2 cursor-pointer group opacity-0 hover:opacity-100 transition-opacity">
             <div class="p-2.5 rounded-full bg-rose-950/60 text-white backdrop-blur group-hover:scale-110 transition-transform shadow-lg border border-rose-400/30">
                 <i data-lucide="chevron-right" class="w-6 h-6"></i>
             </div>
         </div>
 
-        <!-- 3D Book Hardcover Container -->
         <div id="bookStage" class="book-container relative flex items-center justify-center w-full max-w-5xl h-[76vh] max-h-[820px] min-h-[460px] rounded-r-2xl rounded-l-2xl shadow-2xl transition-transform duration-300">
-            
-            <!-- Ribbon Bookmark Visual Layer -->
             <div id="activeRibbonBookmark" class="ribbon-bookmark hidden" title="Page Bookmarked"></div>
 
-            <!-- Left Page Sheet -->
             <div id="leftPageSheet" class="page-sheet left-page relative w-1/2 h-full flex flex-col justify-between p-6 sm:p-12 rounded-l-2xl overflow-hidden border-r-0">
                 <div class="corner-cap corner-top-left"></div>
                 <div class="corner-cap corner-bottom-left"></div>
-                
-                <div id="leftPageContent" class="h-full flex flex-col justify-between overflow-y-auto custom-scrollbar">
-                    <!-- Left Page Content rendered by JS -->
-                </div>
-
+                <div id="leftPageContent" class="h-full flex flex-col justify-between overflow-y-auto custom-scrollbar"></div>
                 <div class="flex justify-between items-center text-xs opacity-60 mt-3 pt-2 border-t border-rose-900/10 font-serif">
                     <span id="leftChapterFooter" class="truncate max-w-[140px] italic gold-foil-text">Title</span>
                     <span id="leftPageNum" class="font-bold">1</span>
                 </div>
             </div>
 
-            <!-- Spine Center Crease Line -->
             <div id="spineCrease" class="spine-crease spine-crease-dual"></div>
 
-            <!-- Right Page Sheet -->
             <div id="rightPageSheet" class="page-sheet right-page relative w-1/2 h-full flex flex-col justify-between p-6 sm:p-12 rounded-r-2xl overflow-hidden">
                 <div class="corner-cap corner-top-right"></div>
                 <div class="corner-cap corner-bottom-right"></div>
-
-                <div id="rightPageContent" class="h-full flex flex-col justify-between overflow-y-auto custom-scrollbar">
-                    <!-- Right Page Content rendered by JS -->
-                </div>
-
+                <div id="rightPageContent" class="h-full flex flex-col justify-between overflow-y-auto custom-scrollbar"></div>
                 <div class="flex justify-between items-center text-xs opacity-60 mt-3 pt-2 border-t border-rose-900/10 font-serif">
                     <span id="rightPageNum" class="font-bold">2</span>
                     <span id="rightChapterFooter" class="truncate max-w-[140px] italic gold-foil-text">Chapter</span>
                 </div>
             </div>
 
-            <!-- Animated 3D Page Turning Layer -->
             <div id="pageFlipper" class="page-flipper">
                 <div id="flipperFront" class="flipper-face front p-6 sm:p-12 flex flex-col justify-between">
                     <div id="flipperFrontContent" class="h-full overflow-hidden"></div>
@@ -769,7 +748,6 @@
                 </div>
             </div>
 
-            <!-- Touch Bend Gradient Overlay -->
             <div id="bendShadowOverlay" class="dynamic-bend-shadow"></div>
             <div id="pageHearts" aria-hidden="true">
                 <span class="page-heart" title="Drag this heart">♥</span>
@@ -782,14 +760,10 @@
                 <span class="page-heart" title="Drag this heart">♥</span>
                 <span class="page-heart" title="Drag this heart">♥</span>
             </div>
-
         </div>
-
     </main>
 
     <footer class="w-full px-4 py-3 border-t border-rose-900/10 z-40 backdrop-blur-md flex flex-col space-y-2 relative" style="background-color: var(--bg-overlay);">
-        
-        <!-- Text To Speech Controls -->
         <div id="ttsControlBar" class="hidden flex items-center justify-between bg-rose-500/10 px-4 py-1.5 rounded-xl text-xs">
             <div class="flex items-center space-x-2">
                 <i data-lucide="disc" class="w-4 h-4 animate-spin text-rose-400"></i>
@@ -814,16 +788,15 @@
             </div>
         </div>
 
-        <!-- Page Scrubber and Arrow Buttons -->
         <div id="pageNavigation" class="flex items-center justify-between space-x-2 sm:space-x-6">
             <button id="prevBtn" class="p-2.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 active:scale-95 transition" type="button" aria-label="Previous page" title="Previous Page">
                 <i data-lucide="arrow-left" class="w-5 h-5 text-rose-300"></i>
             </button>
 
             <div class="flex-1 flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-4 max-w-xl">
-                <input id="pageScrubber" type="range" min="1" max="9" value="1" class="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-rose-900/40 accent-rose-500">
+                <input id="pageScrubber" type="range" min="1" max="10" value="1" class="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-rose-900/40 accent-rose-500">
                 <div class="text-xs font-bold whitespace-nowrap min-w-[90px] text-center font-serif text-rose-200">
-                    <span id="pageIndicator">Page 1 of 9</span>
+                    <span id="pageIndicator">Page 1 of 10</span>
                 </div>
             </div>
 
@@ -837,8 +810,7 @@
         </div>
     </footer>
 
-    <!-- TOC Drawer -->
-    <div id="tocDrawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] z-50 bg-rose-950/95 text-rose-100 backdrop-blur-xl shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-r border-rose-800/20">
+    <div id="tocDrawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] z-50 bg-rose-950/95 text-rose-100 backdrop-blur-xl shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
         <div class="p-4 border-b border-rose-800/20 flex items-center justify-between">
             <div class="flex items-center space-x-2">
                 <i data-lucide="list" class="w-5 h-5 text-rose-400"></i>
@@ -848,13 +820,10 @@
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
         </div>
-        <div id="tocList" class="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
-            <!-- Rendered by JS -->
-        </div>
+        <div id="tocList" class="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar"></div>
     </div>
 
-    <!-- Bookmarks Drawer -->
-    <div id="bookmarksDrawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] z-50 bg-rose-950/95 text-rose-100 backdrop-blur-xl shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-r border-rose-800/20">
+    <div id="bookmarksDrawer" class="fixed inset-y-0 left-0 w-80 max-w-[85vw] z-50 bg-rose-950/95 text-rose-100 backdrop-blur-xl shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
         <div class="p-4 border-b border-rose-800/20 flex items-center justify-between">
             <div class="flex items-center space-x-2">
                 <i data-lucide="bookmark" class="w-5 h-5 text-rose-400"></i>
@@ -864,12 +833,10 @@
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
         </div>
-        <div id="bookmarksList" class="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar">
-            <!-- Rendered by JS -->
-        </div>
+        <div id="bookmarksList" class="flex-1 overflow-y-auto p-4 space-y-2 custom-scrollbar"></div>
     </div>
 
-    <div id="themeDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[85vw] z-50 bg-rose-950/95 text-rose-100 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-l border-rose-800/20">
+    <div id="themeDrawer" class="fixed inset-y-0 right-0 w-80 max-w-[85vw] z-50 bg-rose-950/95 text-rose-100 backdrop-blur-xl shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
         <div class="p-4 border-b border-rose-800/20 flex items-center justify-between">
             <div class="flex items-center space-x-2">
                 <i data-lucide="sliders" class="w-5 h-5 text-rose-400"></i>
@@ -884,28 +851,28 @@
             <div>
                 <h3 class="font-bold mb-3 uppercase text-xs tracking-wider opacity-70">Color Palette</h3>
                 <div class="grid grid-cols-1 gap-2.5">
-                    <button data-theme="concert-night" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#1c0512] text-[#ffccd5] border-rose-500">
+                    <button data-theme="concert-night" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#1c0512] text-[#ffccd5] border-rose-500/30 hover:border-rose-400/60">
                         <div>
                             <span class="font-bold text-xs block">Maastricht Concert Night</span>
                             <span class="text-[10px] opacity-70">Rose & Pink Starlight</span>
                         </div>
                         <i data-lucide="heart" class="w-4 h-4 text-pink-300"></i>
                     </button>
-                    <button data-theme="soft-rose" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#fff0f3] text-[#4a0e17] border-rose-300">
+                    <button data-theme="soft-rose" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#fff0f3] text-[#4a0e17] border-rose-300/80 hover:border-rose-400/90">
                         <div>
                             <span class="font-bold text-xs block">Soft Rose Pink</span>
                             <span class="text-[10px] opacity-70">Romantic Blush Velvet</span>
                         </div>
                         <i data-lucide="heart" class="w-4 h-4 text-rose-600"></i>
                     </button>
-                    <button data-theme="midnight-velvet" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#220710] text-[#ffccd5] border-rose-900">
+                    <button data-theme="midnight-velvet" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#220710] text-[#ffccd5] border-rose-600/50 hover:border-rose-400/70">
                         <div>
                             <span class="font-bold text-xs block">Starry Midnight</span>
                             <span class="text-[10px] opacity-70">Deep Obsidian Glow</span>
                         </div>
                         <i data-lucide="moon" class="w-4 h-4 text-rose-300"></i>
                     </button>
-                    <button data-theme="vintage-parchment" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#fdf8eb] text-[#3d1c06] border-rose-300">
+                    <button data-theme="vintage-parchment" class="theme-select-btn p-3 rounded-xl border text-left flex justify-between items-center transition bg-[#fdf8eb] text-[#3d1c06] border-amber-300/70 hover:border-amber-400/90">
                         <div>
                             <span class="font-bold text-xs block">Vintage Parchment</span>
                             <span class="text-[10px] opacity-70">Warm Antique Paper</span>
@@ -932,7 +899,6 @@
     <div id="drawerBackdrop" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-40 hidden"></div>
 
     <script>
-        // Complete Book Data Context (Exact User Verses & Prose)
         const BOOK_DATA = {
             title: "A LIFETIME OF SILENT DEVOTION",
             subtitle: "A Collection of Devotional Verses • Dedicated to Sarah",
@@ -954,9 +920,9 @@
                             <span class="font-script text-3xl text-rose-600 block">Dedicated to Sarah</span>
                             <div class="w-16 h-0.5 bg-rose-300 mx-auto my-2"></div>
                         </div>
-                        <p class="drop-cap leading-relaxed mb-4">You may see that I do not know about emotion—yes. But as I was writing this book, I tried to learn more about this. And I learned that the feeling of love is not always just a feeling; it is a choice and a responsibility.</p>
-                        <p class="leading-relaxed mb-4">I learned that a man doesn’t just protect his woman from the world, he protects her from his own words that burn. For the way I understand it, love isn’t just about never needing protection—it is reciprocation.</p>
-                        <blockquote class="border-l-2 border-rose-400 pl-4 italic my-4 text-rose-800/90 font-serif">"I lead her and she returns it. I put effort into her and she mirrors it. That is why I want to become better for myself—because how can I become the man of your dreams if I am not even the man of my own dreams?"</blockquote>
+                        <p class="drop-cap leading-relaxed mb-4">You may see that I do not know about emotion—yes. But as I was writing this book, I tried to learn more about this. And I learned that a man doesn't just protect his woman from the world; he protects her from his own words that burn.</p>
+                        <p class="leading-relaxed mb-4">I learned that love is not just a feeling, it is responsibility. I learned that if I claim to love you, then I must be stronger than my pride, gentler than my fear, and more honest than my silence.</p>
+                        <blockquote class="border-l-2 border-rose-400 pl-4 italic my-4 text-rose-800/90 font-serif">"I lead her and she returns it. I put effort into her and she mirrors it. That is how love becomes a home, not a wound."</blockquote>
                         <p class="text-right font-script text-2xl text-rose-700 mt-6">— Yours, in Silent Devotion</p>
                     `
                 },
@@ -970,127 +936,136 @@
                             <p class="text-xs italic opacity-75 mt-1">Five Chapters of Faith, Penance & Love</p>
                         </div>
                         <div class="space-y-3 font-serif">
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1">
-                                <span class="font-bold text-sm gold-foil-text">CHAPTER I</span>
-                                <span class="text-xs italic opacity-70">July 07, 2024</span>
-                                <span class="font-bold text-xs">Page 4</span>
-                            </div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1">
-                                <span class="font-bold text-sm gold-foil-text">CHAPTER II</span>
-                                <span class="text-xs italic opacity-70">Gentle Soul Behind the Silence</span>
-                                <span class="font-bold text-xs">Page 5</span>
-                            </div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1">
-                                <span class="font-bold text-sm gold-foil-text">CHAPTER III</span>
-                                <span class="text-xs italic opacity-70">The Weight of My Remorse</span>
-                                <span class="font-bold text-xs">Page 6</span>
-                            </div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1">
-                                <span class="font-bold text-sm gold-foil-text">CHAPTER IV</span>
-                                <span class="text-xs italic opacity-70">Rebuilding in the Silence</span>
-                                <span class="font-bold text-xs">Page 7</span>
-                            </div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1">
-                                <span class="font-bold text-sm gold-foil-text">CHAPTER V</span>
-                                <span class="text-xs italic opacity-70">You Are My Whole World's Light</span>
-                                <span class="font-bold text-xs">Page 8</span>
-                            </div>
-                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1">
-                                <span class="font-bold text-sm gold-foil-text">EPILOGUE</span>
-                                <span class="text-xs italic opacity-70">Heart Vow to Sarah</span>
-                                <span class="font-bold text-xs">Page 9</span>
-                            </div>
+                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER I</span><span class="text-xs italic opacity-70">July 07, 2024</span><span class="font-bold text-xs">Page 4</span></div>
+                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER II</span><span class="text-xs italic opacity-70">Gentle Soul Behind the Silence</span><span class="font-bold text-xs">Page 5</span></div>
+                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER III</span><span class="text-xs italic opacity-70">The Weight of My Remorse</span><span class="font-bold text-xs">Page 6</span></div>
+                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER IV</span><span class="text-xs italic opacity-70">Rebuilding in the Silence</span><span class="font-bold text-xs">Page 7</span></div>
+                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER V</span><span class="text-xs italic opacity-70">You Are My Whole World's Light</span><span class="font-bold text-xs">Page 8</span></div>
+                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">CHAPTER VI</span><span class="text-xs italic opacity-70">The Last Poem</span><span class="font-bold text-xs">Page 9</span></div>
+                            <div class="flex justify-between items-baseline border-b border-rose-900/10 pb-1"><span class="font-bold text-sm gold-foil-text">EPILOGUE</span><span class="text-xs italic opacity-70">Heart Vow to Sarah</span><span class="font-bold text-xs">Page 10</span></div>
                         </div>
                     `
                 },
                 {
                     chapter: "CHAPTER I",
-                    title: "July 07, 2024",
                     type: "poem",
-                    stanzas: [
-                        "On July seventh, twenty-twenty-four,<br>My life was changed forever to the core.<br>Before you came, my heart was dead inside—<br>An empty shell washed up upon the tide.",
-                        "I did not care for anything at all,<br>Just drifting numb, waiting for life to fall.<br>Then suddenly, my eyes searched through the crowd,<br>Ignoring every face and voice too loud.",
-                        "I did not need for you to look at me;<br>Just seeing you was all I wished to see.<br>Your gentle essence woke my heart inside,<br>And brought to light the love I could not hide.",
-                        "On Sunday mornings, how I’d wait and pray,<br>Hoping your presence would brighten up my day.<br>To watch you walk into that quiet place,<br>And feel the sweet essence of your grace.",
-                        "I never dreamed that I could fall this deep,<br>Into a love my soul would forever keep.<br>You pulled me from the darkest, coldest sea,<br>And gave a brand-new, breathing life to me."
-                    ]
+                    title: "July 07, 2024",
+                    content: `
+                        <div class="text-center mb-4">
+                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER I</h2>
+                            <p class="text-xs italic opacity-75">July 07, 2024</p>
+                        </div>
+                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
+                            <p>On July seventh, twenty-twenty-four,<br>My life was changed forever to the core.<br>Before you came, my heart was dead inside,<br>An empty shell washed up upon the tide.</p>
+                            <p>I did not care for anything at all,<br>Just drifting numb, waiting for life to fall.<br>Then suddenly, my eyes searched through the crowd,<br>Ignoring every face and voice too loud.</p>
+                            <p>I did not need for you to look at me,<br>Just seeing you was all I wished to see.<br>Your gentle essence woke my heart inside,<br>And brought to light the love I could not hide.</p>
+                            <p>On Sunday mornings, how I’d wait and pray,<br>Hoping your presence would brighten up my day.<br>To watch you walk into that quiet place,<br>And feel the sweet essence of your grace.</p>
+                        </div>
+                    `
                 },
                 {
                     chapter: "CHAPTER II",
-                    title: "Gentle Soul Behind the Silence",
                     type: "poem",
-                    stanzas: [
-                        "At first I thought your heart was cold and still,<br>A distant wall I could not reach at will.<br>But looking close, I saw the truth inside:<br>A gentle, tender soul you try to hide.",
-                        "I worked through long and weary nights alone,<br>To earn a small, sweet gift to call my own.<br>Not trying to buy your heart or win your glance,<br>Just letting you know I'm here, given the chance.",
-                        "I threw my foolish pride down to the floor,<br>My dignity meant nothing anymore.<br>I'd lose my self-respect so willingly,<br>If it meant you could feel my loyalty.",
-                        "I tried to write you letters from my heart,<br>But stumbled over words right from the start.<br>I felt so small, so bad at every line,<br>Fearing my clumsy thoughts would never shine.",
-                        "I know I feel so flawed and not enough,<br>My words are simple and my hands are rough.<br>But from the deepest bottom of my soul,<br>I love you, and your peace is my only goal."
-                    ]
+                    title: "Gentle Soul Behind the Silence",
+                    content: `
+                        <div class="text-center mb-4">
+                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER II</h2>
+                            <p class="text-xs italic opacity-75">Gentle Soul Behind the Silence</p>
+                        </div>
+                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
+                            <p>At first I thought your heart was cold and still,<br>A distant wall I could not reach at will.<br>But looking close, I saw the truth inside:<br>A gentle, tender soul you try to hide.</p>
+                            <p>I worked through long and weary nights alone,<br>To earn a small, sweet gift to call my own.<br>Not trying to buy your heart or win your glance,<br>Just letting you know I’m here, given the chance.</p>
+                            <p>I threw my foolish pride down to the floor,<br>My dignity meant nothing anymore.<br>I’d lose my self-respect so willingly,<br>If it meant you could feel my loyalty.</p>
+                            <p>I tried to write your letters from my heart,<br>But stumbled over words right from the start.<br>I felt so small, so bad at every line,<br>Fearing my clumsy thoughts would never shine.</p>
+                        </div>
+                    `
                 },
                 {
                     chapter: "CHAPTER III",
-                    title: "The Weight of My Remorse",
                     type: "poem",
-                    stanzas: [
-                        "I am so sorry for the tears I caused your eyes to shed,<br>for every single careless word my foolish lips have said.<br>I look back at the past and ask: why did I cause you pain?<br>Why did I break the gentlest heart and leave you in the rain?",
-                        "If I could only turn back time and reach that yesterday,<br>I’d fix every mistake I made and wipe your grief away.<br>I would do everything I could to treat your heart so right,<br>and guard your fragile, sweet soul through every day and night.",
-                        "Instead, this bitter, heavy guilt will hunt me through my days,<br>a dark and quiet shadow that will follow all my ways.<br>There is no valid reason for the damage I have done—<br>I hurt the sweetest, softest soul beneath the morning sun.",
-                        "I hate the foolish, selfish man I proved myself to be,<br>and for the sorrow that I brought, I ask no sympathy.<br>I do not ask to win you back or beg for your embrace,<br>I only want to own my faults and honor your sweet grace.",
-                        "From the deepest bottom of my heart, I’m truly, deeply grieved,<br>for hurting such a precious heart that trusted and believed.<br>This guilt will forever haunt my chest until my breath is gone—<br>I’m sorry, love, for all the pain I placed your heart upon."
-                    ]
+                    title: "The Weight of My Remorse",
+                    content: `
+                        <div class="text-center mb-4">
+                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER III</h2>
+                            <p class="text-xs italic opacity-75">The Weight of My Remorse</p>
+                        </div>
+                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
+                            <p>I am so sorry for the tears I caused your eyes to shed,<br>for every single careless word my foolish lips have said.<br>I look back at the past and ask: why did I cause you pain?<br>Why did I break the gentlest heart and leave you in the rain?</p>
+                            <p>If I could only turn back time and reach that yesterday,<br>I’d fix every mistake I made and wipe your grief away.<br>I would do everything I could to treat your heart so right,<br>and guard your fragile, sweet soul through every day and night.</p>
+                            <p>Instead, this bitter, heavy guilt will hunt me through my days,<br>a dark and quiet shadow that will follow all my ways.<br>There is no valid reason for the damage I have done,<br>I hurt the sweetest, softest soul beneath the morning sun.</p>
+                            <p>I hate the foolish, selfish man I proved myself to be,<br>and for the sorrow that I brought, I ask no sympathy.<br>I do not ask to win you back or beg for your embrace,<br>I only want to own my faults and honor your sweet grace.</p>
+                        </div>
+                    `
                 },
                 {
                     chapter: "CHAPTER IV",
-                    title: "Rebuilding in the Silence",
                     type: "poem",
-                    stanzas: [
-                        "With God beside my steps, I walk this quiet ground,<br>rebuilding who I am where humble grace is found.<br>I learn new skills each day to make my mind expand,<br>and strive to build a life beneath His guiding hand.",
-                        "Whenever something new or grand comes in my day,<br>I rush with joyful thoughts to tell you right away—<br>then suddenly I stop, as silence hits me clear,<br>remembering we are gone, and you no longer hear.",
-                        "Yet memories of us still keep my fire bright,<br>a holy, burning flame that warms my lonely night.<br>No woman on this earth could ever take your place,<br>no time can ever fade the soft light of your face.",
-                        "Even if years pass by and you find someone new,<br>my heart’s one true desire stays forever bound to you.<br>I’m breaking down my core, rebuilding from the floor,<br>to be the man of dreams you needed long before.",
-                        "I pledge my whole existence now to master grace and peace,<br>learning how to hold you soft until my breath shall cease.<br>My forever desire, my one remaining goal,<br>is guarding your pure heart and honoring your soul."
-                    ]
+                    title: "Rebuilding in the Silence",
+                    content: `
+                        <div class="text-center mb-4">
+                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER IV</h2>
+                            <p class="text-xs italic opacity-75">Rebuilding in the Silence</p>
+                        </div>
+                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
+                            <p>With God beside my steps, I walk this quiet ground,<br>rebuilding who I am where humble grace is found.<br>I learn new skills each day to make my mind explain,<br>and strive to build a life beneath His guiding hand.</p>
+                            <p>Whenever something new or grand comes in my days,<br>I rush with joyful thoughts to tell you right away.<br>Then suddenly I stop, as silence hits me clear,<br>remembering we are gone, and you no longer hear.</p>
+                            <p>Yet memories of us still keep my fire bright,<br>a holy, burning flame that warms my lonely night.<br>No woman on this earth could ever take your place,<br>no time can ever fade the soft light of your face.</p>
+                            <p>Even if years pass by and you find someone new,<br>my heart’s one true desire stays forever bound to you.<br>I’m breaking down my core, rebuilding from the floor,<br>to be the man of dreams you needed long before.</p>
+                        </div>
+                    `
                 },
                 {
                     chapter: "CHAPTER V",
-                    title: "You Are My Whole World's Light",
                     type: "poem",
-                    stanzas: [
-                        "With God to guide my quiet steps through all the lonely dark,<br>I've won so many victories, yet each is just a spark.<br>Though I have gained so much in life and built myself anew,<br>all my success is nothing when I am without you.",
-                        "For my life's highest victory, its sweetest golden prize,<br>was standing in the softest light that rests inside your eyes.<br>I never asked to hold your hand or beg for anything more,<br>than just to quietly love the soul I sacredly adore.",
-                        "I'd trade my whole tomorrow just to be near your place,<br>to look for one short minute on the beauty of your face.<br>I'd give my final breath and all this empty world bestows,<br>just for the sweet essence that your gentle presence shows.",
-                        "Yet sweeter than a smile that shines so beautiful and bright,<br>your mind is like a sacred garden filled with peace and light.<br>The pure and tender essence of your heart is so refined—<br>the dearest, most precious home my soul will ever find.",
-                        "If I could spend my whole life in your soft and gentle view,<br>I would ask for no other dream<br>on earth to ever come true.<br>For one bright look at you, my entire heart was made,<br>and even forever is a love that will never fade.",
-                        "This is not to win you back, nor ask for any grace,<br>nor to beg for a path back into your warm embrace.<br>This is a devotion I have willingly and truly paid,<br>to love you, and suffer for a lifetime in your shade.",
-                        "No matter where my steps may go, my vow remains so true.<br>Oh Sarah, with all my soul, I will love you forever."
-                    ]
+                    title: "You Are My Whole World's Light",
+                    content: `
+                        <div class="text-center mb-4">
+                            <h2 class="font-display text-2xl font-bold gold-foil-text">CHAPTER V</h2>
+                            <p class="text-xs italic opacity-75">You Are My Whole World's Light</p>
+                        </div>
+                        <div class="space-y-4 leading-relaxed text-rose-900/95 font-serif">
+                            <p>With God to guide my quiet steps through all the lonely dark,<br>I’ve won so many victories, yet each is just a spark.<br>Though I have gained so much in life and built myself anew,<br>all my success is nothing when I am without you.</p>
+                            <p>For my life’s highest victory, its sweetest golden prize,<br>was standing in the softest light that rests inside your eyes.<br>I never asked to hold your hand or beg for anything more,<br>than just to quietly love the soul I sacredly adore.</p>
+                            <p>I’d trade my whole tomorrow just to be near your place,<br>to look for one short minute on the beauty of your face.<br>I’d give my final breath and all this empty world bestows,<br>just for the sweet essence that your gentle presence shows.</p>
+                            <p>Yet sweeter than a smile that shines so beautiful and bright,<br>your mind is like a sacred garden filled with peace and light.<br>The pure and tender essence of your heart is so refined,<br>the dearest, most precious home my soul will ever find.</p>
+                            <p>If I could spend my whole life in your soft and gentle view,<br>I would ask for no other dream on earth to ever come true.<br>For one bright look at you, my entire heart was made,<br>and even forever is a love that will never fade.</p>
+                        </div>
+                    `
+                },
+                {
+                    chapter: "CHAPTER VI",
+                    type: "poem",
+                    title: "The Last Poem",
+                    content: `
+                        <div class="text-center mb-5">
+                            <h2 class="font-display text-3xl font-bold gold-foil-text">The Last Poem</h2>
+                        </div>
+                        <div class="space-y-5 leading-relaxed text-rose-900/95 font-serif text-lg">
+                            <p>If I could, I would open my chest and place<br>my heart in your hands, not to shock you,<br>not to prove anything dramatic but so you<br>could feel it yourself.</p>
+                            <p>Feel how it trembles at your name.<br>How it races when you come close.<br>How every single beat whispers you.<br>Because maybe then you would understand<br>that this isn’t just love I speak of<br>it’s something carved into me,<br>something that lives and breathes<br>only for you.</p>
+                            <p>And if that is too much to bear,<br>then let it be gentle.<br>Let it be quiet.<br>Let it be the kind of love<br>that does not ask to be seen,<br>only to be known.</p>
+                            <p>I have loved you in silence,<br>in patience,<br>in the spaces between my breaths,<br>in the ache of remembering<br>your face in every dark room.<br>I have loved you in ways<br>that never needed a stage,<br>only a soul willing to listen.</p>
+                            <p>So if this is my final poem,<br>let it be this:<br>I love you without needing<br>to be understood.<br>I love you without asking<br>for anything in return.<br>I love you as a man<br>who has finally stopped running<br>from the truth.</p>
+                            <p>And the truth is simple:<br>you are the home<br>my heart kept searching for,<br>the light<br>my soul kept praying for,<br>the grace<br>I never deserved,<br>but somehow received.</p>
+                            <p>If I could, I would give you<br>every scar, every prayer,<br>every unfinished sentence,<br>every lonely night,<br>every silent miracle<br>that led me here.<br>Because all of it was only a path<br>back to you.</p>
+                            <p>And if this chapter ends here,<br>then let it end with this:<br>I loved you softly,<br>I loved you deeply,<br>I loved you in the dark<br>when no one was watching,<br>and I will love you<br>even when the world goes quiet.<br>Not because I am perfect,<br>but because you are the only truth<br>that ever made me feel real.</p>
+                            <p>This is my last poem.<br>And it is yours.</p>
+                        </div>
+                    `
                 },
                 {
                     chapter: "EPILOGUE",
-                    title: "Heart Vow to Sarah",
                     type: "epilogue",
+                    title: "Heart Vow to Sarah",
                     content: `
-                        <div class="h-full flex flex-col justify-between text-center p-2">
-                            <div>
-                                <span class="font-script text-4xl gold-foil-text block mb-2">An Eternal Vow</span>
-                                <h2 class="font-display font-bold text-lg uppercase tracking-widest gold-foil-text mb-4">Dedicated to Sarah</h2>
-                                <p class="leading-relaxed italic text-sm opacity-90 mb-6">
-                                    "To Sarah—my quiet sanctuary, my guiding star, and the purest grace I will ever know. May your life be filled with endless peace, warmth, and joy."
-                                </p>
-                            </div>
-
-                            <div class="my-auto py-6">
-                                <button id="sendVowBtn" class="px-6 py-3 rounded-full bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold text-sm shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center space-x-2 mx-auto">
-                                    <i data-lucide="heart" class="w-5 h-5 fill-current text-white"></i>
-                                    <span>Send Silent Heart Vow</span>
-                                </button>
-                                <p id="vowResponseMsg" class="text-xs font-script text-rose-700 mt-3 opacity-0 transition-opacity">Your quiet vow has risen into the ambient stars...</p>
-                            </div>
-
-                            <div class="text-xs opacity-75 font-serif border-t border-rose-900/10 pt-3">
-                                <p class="gold-foil-text font-bold uppercase tracking-wider">A Lifetime of Silent Devotion</p>
-                                <p class="text-[10px] mt-0.5">Faith • Penance • Rebuilding • Unconditional Love</p>
-                            </div>
+                        <div class="text-center mb-6">
+                            <h2 class="font-script text-5xl text-rose-600">An Eternal Vow</h2>
+                            <div class="chapter-ornament"></div>
+                        </div>
+                        <div class="space-y-4 leading-relaxed text-rose-800/95 font-serif text-base">
+                            <p>To Sarah,<br>my quiet sanctuary, my guiding star,<br>and the purest grace I will ever know.<br>May your life be filled with endless peace, warmth,<br>and joy. May every step you take be softened by love,<br>and every dream you hold bloom beautifully before you.</p>
+                            <p>I vow to remain faithful in every season of my life,<br>to honour your heart with patience, devotion, and truth.<br>Even when time moves on,<br>even when distance changes the shape of the world,<br>my love for you will remain a quiet constant—<br>steadfast, gentle, and true.</p>
+                            <p>For you are not just a chapter in my story,<br>you are the soul I keep returning to.<br>And for as long as my heart beats,<br>I will love you in silence, in devotion,<br>and in the deepest kind of grace.</p>
                         </div>
                     `
                 }
@@ -1103,857 +1078,158 @@
         let currentTheme = localStorage.getItem('silentDevotionTheme') || 'concert-night';
         let fontSizeScale = parseFloat(localStorage.getItem('silentDevotionFontSize')) || 1.0;
         let bookmarks = JSON.parse(localStorage.getItem('silentDevotionBookmarks')) || [];
-        let isFxMuted = false;
 
-        // Pointer/Touch drag physics state
-        let isDragging = false;
-        let isTrackingPointer = false;
-        let dragStartX = 0;
-        let dragStartY = 0;
-        let dragCurrentX = 0;
-        let dragStartedAt = 0;
-        let activePointerId = null;
-        let draggedHeart = null;
-        let heartDragOffsetX = 0;
-        let heartDragOffsetY = 0;
-        let isFlipping = false;
+        document.body.classList.add(currentTheme === 'soft-rose' ? 'theme-soft-rose' : currentTheme === 'midnight-velvet' ? 'theme-midnight-velvet' : currentTheme === 'vintage-parchment' ? 'theme-vintage-parchment' : '');
 
-        // Background song player
-        let audioCtx = null;
-        let musicIsPlaying = false;
-        let musicWantsPlayback = false;
-        let songHasFadedIn = false;
-        let songFadeTimer = null;
-        const backgroundSong = document.getElementById('backgroundSong');
-        backgroundSong.volume = 0;
-
-        function initAudioContext() {
-            if (!audioCtx) {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                if (AudioContextClass) {
-                    audioCtx = new AudioContextClass();
-                }
-            }
-            if (audioCtx && audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+        function updateThemeStyles() {
+            document.body.classList.remove('theme-soft-rose', 'theme-midnight-velvet', 'theme-vintage-parchment');
+            if (currentTheme === 'soft-rose') document.body.classList.add('theme-soft-rose');
+            if (currentTheme === 'midnight-velvet') document.body.classList.add('theme-midnight-velvet');
+            if (currentTheme === 'vintage-parchment') document.body.classList.add('theme-vintage-parchment');
+            localStorage.setItem('silentDevotionTheme', currentTheme);
         }
 
-        function fadeSongIn() {
-            if (songHasFadedIn || songFadeTimer) return;
-
-            songFadeTimer = setInterval(() => {
-                backgroundSong.volume = Math.min(backgroundSong.volume + 0.04, 1);
-                if (backgroundSong.volume >= 1) {
-                    clearInterval(songFadeTimer);
-                    songFadeTimer = null;
-                    songHasFadedIn = true;
-                }
-            }, 100);
+        function updateFontScale() {
+            document.documentElement.style.fontSize = `${fontSizeScale * 100}%`;
+            localStorage.setItem('silentDevotionFontSize', fontSizeScale.toString());
+            const fontSizeLabel = document.getElementById('fontSizeLabel');
+            if (fontSizeLabel) fontSizeLabel.textContent = `${Math.round(fontSizeScale * 100)}%`;
         }
 
-        function startSong() {
-            musicWantsPlayback = true;
-            updateMusicUI();
+        function renderPage(pageIndex) {
+            const leftPage = BOOK_DATA.pages[pageIndex * 2] || null;
+            const rightPage = BOOK_DATA.pages[pageIndex * 2 + 1] || null;
 
-            backgroundSong.play().catch(() => {
-                musicIsPlaying = false;
-                musicWantsPlayback = false;
-                updateMusicUI();
-            });
-        }
-
-        function stopSong() {
-            musicWantsPlayback = false;
-            backgroundSong.pause();
-        }
-
-        function toggleSong() {
-            if (musicIsPlaying || musicWantsPlayback) stopSong();
-            else startSong();
-        }
-
-        backgroundSong.addEventListener('play', () => {
-            musicIsPlaying = true;
-            if (!songHasFadedIn) fadeSongIn();
-            updateMusicUI();
-        });
-
-        backgroundSong.addEventListener('pause', () => {
-            musicIsPlaying = false;
-            musicWantsPlayback = false;
-            if (songFadeTimer) {
-                clearInterval(songFadeTimer);
-                songFadeTimer = null;
-            }
-            updateMusicUI();
-        });
-
-        backgroundSong.addEventListener('error', () => {
-            musicIsPlaying = false;
-            musicWantsPlayback = false;
-            if (songFadeTimer) {
-                clearInterval(songFadeTimer);
-                songFadeTimer = null;
-            }
-            updateMusicUI();
-        });
-
-        function updateMusicUI() {
-            const eq = document.getElementById('eqContainer');
-            const label = document.getElementById('musicBtnLabel');
-            const button = document.getElementById('musicToggleBtn');
-            if (musicIsPlaying || musicWantsPlayback) {
-                if (eq) eq.classList.remove('eq-paused');
-                if (label) label.textContent = musicIsPlaying ? 'Playing' : 'Starting…';
-                if (button) button.setAttribute('aria-pressed', 'true');
-            } else {
-                if (eq) eq.classList.add('eq-paused');
-                if (label) label.textContent = 'Sarah';
-                if (button) button.setAttribute('aria-pressed', 'false');
-            }
-        }
-
-        function playPaperSound() {
-            if (isFxMuted) return;
-            initAudioContext();
-            if (!audioCtx) return;
-
-            try {
-                const bufferSize = audioCtx.sampleRate * 0.16;
-                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-                const data = buffer.getChannelData(0);
-                for (let i = 0; i < bufferSize; i++) {
-                    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 1.8);
-                }
-
-                const noise = audioCtx.createBufferSource();
-                noise.buffer = buffer;
-
-                const filter = audioCtx.createBiquadFilter();
-                filter.type = 'bandpass';
-                filter.frequency.setValueAtTime(1100, audioCtx.currentTime);
-                filter.Q.setValueAtTime(1.8, audioCtx.currentTime);
-
-                const gain = audioCtx.createGain();
-                gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 0.04);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.16);
-
-                noise.connect(filter);
-                filter.connect(gain);
-                gain.connect(audioCtx.destination);
-
-                noise.start();
-            } catch (e) {}
-        }
-
-        const bookStage = document.getElementById('bookStage');
-        const leftPageSheet = document.getElementById('leftPageSheet');
-        const rightPageSheet = document.getElementById('rightPageSheet');
-        const leftPageContent = document.getElementById('leftPageContent');
-        const rightPageContent = document.getElementById('rightPageContent');
-        const pageFlipper = document.getElementById('pageFlipper');
-        const flipperFrontContent = document.getElementById('flipperFrontContent');
-        const flipperBackContent = document.getElementById('flipperBackContent');
-        const bendShadowOverlay = document.getElementById('bendShadowOverlay');
-        const spineCrease = document.getElementById('spineCrease');
-        const activeRibbonBookmark = document.getElementById('activeRibbonBookmark');
-        const pageHearts = document.getElementById('pageHearts');
-
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const pageScrubber = document.getElementById('pageScrubber');
-        const pageIndicator = document.getElementById('pageIndicator');
-        const readingProgress = document.getElementById('readingProgress');
-        const viewModeBtn = document.getElementById('viewModeBtn');
-        const viewModeIcon = document.getElementById('viewModeIcon');
-
-        const headerChapterName = document.getElementById('headerChapterName');
-        const leftChapterFooter = document.getElementById('leftChapterFooter');
-        const rightChapterFooter = document.getElementById('rightChapterFooter');
-        const leftPageNum = document.getElementById('leftPageNum');
-        const rightPageNum = document.getElementById('rightPageNum');
-
-        const tocDrawer = document.getElementById('tocDrawer');
-        const bookmarksDrawer = document.getElementById('bookmarksDrawer');
-        const themeDrawer = document.getElementById('themeDrawer');
-        const drawerBackdrop = document.getElementById('drawerBackdrop');
-
-        function updateLayoutMode() {
-            if (userViewPreference === 'single') {
-                isDualView = false;
-            } else if (userViewPreference === 'dual') {
-                isDualView = true;
-            } else {
-                isDualView = window.innerWidth >= 768;
-            }
-
-            if (isDualView) {
-                leftPageSheet.classList.remove('hidden');
-                leftPageSheet.style.width = '50%';
-                rightPageSheet.style.width = '50%';
-                spineCrease.className = 'spine-crease spine-crease-dual';
-                viewModeIcon.setAttribute('data-lucide', 'columns');
-            } else {
-                leftPageSheet.classList.add('hidden');
-                rightPageSheet.style.width = '100%';
-                spineCrease.className = 'spine-crease spine-crease-single';
-                viewModeIcon.setAttribute('data-lucide', 'book-open');
-            }
-            lucide.createIcons();
-            renderPages();
-        }
-
-        function renderPages() {
-            const totalPages = BOOK_DATA.pages.length;
-            if (currentPageIndex < 0) currentPageIndex = 0;
-            if (currentPageIndex >= totalPages) currentPageIndex = totalPages - 1;
-
-            let leftIdx = isDualView ? (currentPageIndex % 2 === 0 ? currentPageIndex - 1 : currentPageIndex) : -1;
-            let rightIdx = isDualView ? (currentPageIndex % 2 === 0 ? currentPageIndex : currentPageIndex + 1) : currentPageIndex;
-
-            if (rightIdx >= 0 && rightIdx < totalPages) {
-                renderSinglePageHTML(rightPageContent, BOOK_DATA.pages[rightIdx]);
-                rightPageNum.textContent = rightIdx + 1;
-                rightChapterFooter.textContent = BOOK_DATA.pages[rightIdx].chapter || "";
-            } else {
-                rightPageContent.innerHTML = `<div class="h-full flex items-center justify-center opacity-30 text-xs italic">End of Verses</div>`;
-                rightPageNum.textContent = "";
-                rightChapterFooter.textContent = "";
-            }
-
-            if (isDualView) {
-                if (leftIdx >= 0 && leftIdx < totalPages) {
-                    renderSinglePageHTML(leftPageContent, BOOK_DATA.pages[leftIdx]);
-                    leftPageNum.textContent = leftIdx + 1;
-                    leftChapterFooter.textContent = BOOK_DATA.pages[leftIdx].chapter || "";
-                } else {
-                    leftPageContent.innerHTML = `<div class="h-full flex items-center justify-center opacity-30 text-xs italic">A Lifetime of Silent Devotion</div>`;
-                    leftPageNum.textContent = "";
-                    leftChapterFooter.textContent = "";
-                }
-            }
-
-            pageScrubber.max = totalPages;
-            pageScrubber.value = currentPageIndex + 1;
-            pageIndicator.textContent = `Page ${currentPageIndex + 1} of ${totalPages}`;
-            
-            const progressPct = ((currentPageIndex + 1) / totalPages) * 100;
-            readingProgress.style.width = `${progressPct}%`;
-
-            headerChapterName.textContent = BOOK_DATA.pages[currentPageIndex]?.title || "Dedicated to Sarah";
-
-            updateBookmarkRibbon();
-            lucide.createIcons();
-        }
-
-        function renderSinglePageHTML(container, pageData) {
-            if (!pageData) return;
-
-            if (pageData.type === 'cover') {
-                container.innerHTML = `
-                    <div class="fairytale-cover h-full flex flex-col justify-between text-center p-4 border-4 border-double gold-border rounded-xl relative overflow-hidden" style="background: var(--book-cover-bg);">
-                        <div class="cover-sparkles" aria-hidden="true"></div>
-                        <div class="mt-6">
-                            <span class="font-script text-2xl gold-foil-text block mb-1">A Collection of Devotional Verses</span>
-                            <h1 class="font-display font-extrabold text-2xl sm:text-3xl gold-foil-text tracking-wider leading-tight">${pageData.title}</h1>
-                            <p class="text-xs italic gold-foil-text mt-2">${pageData.subtitle}</p>
-                        </div>
-
-                        <div class="my-auto py-6">
-                            <div class="w-16 h-16 mx-auto mb-3 text-rose-300 opacity-90 flex items-center justify-center">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" class="w-12 h-12 text-rose-200"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                            </div>
-                            <span class="font-display font-bold text-sm tracking-widest gold-foil-text uppercase">${pageData.dedication}</span>
-                        </div>
-
-                        <div class="mb-4">
-                            <div class="flex flex-wrap justify-center gap-1.5 text-[10px]">
-                                ${pageData.badges.map(b => `<span class="px-2 py-0.5 rounded-full bg-rose-950/60 border border-rose-300/30 text-rose-200 font-medium">${b}</span>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (pageData.type === 'poem') {
-                container.innerHTML = `
-                    <div class="h-full flex flex-col justify-between">
-                        <div>
-                            <div class="text-center mb-5">
-                                <span class="font-display text-xs font-bold tracking-widest uppercase gold-foil-text block">${pageData.chapter}</span>
-                                <h2 class="font-display text-xl font-extrabold gold-foil-text mt-0.5">${pageData.title}</h2>
-                                <div class="chapter-ornament"></div>
-                            </div>
-                            <div class="space-y-3 text-sm sm:text-base leading-relaxed font-serif">
-                                ${pageData.stanzas.map(s => `<p class="stanza-card italic text-center opacity-95">${s}</p>`).join('')}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else if (pageData.type === 'epilogue') {
-                container.innerHTML = pageData.content;
-                setTimeout(() => {
-                    const btn = container.querySelector('#sendVowBtn');
-                    if (btn) btn.addEventListener('click', triggerHeartVowEffect);
-                }, 50);
-            } else {
-                container.innerHTML = `
-                    <div class="h-full flex flex-col justify-between">
-                        <div>
-                            <div class="text-center mb-4">
-                                <h2 class="font-display text-lg font-bold uppercase tracking-wider gold-foil-text">${pageData.title}</h2>
-                                <div class="chapter-ornament"></div>
-                            </div>
-                            <div class="text-sm sm:text-base leading-relaxed font-serif">
-                                ${pageData.content}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-
-            container.style.fontSize = `${fontSizeScale * 100}%`;
-        }
-
-        function turnPage(direction) {
-            if (isFlipping) return;
-
-            const totalPages = BOOK_DATA.pages.length;
-            const step = isDualView ? 2 : 1;
-
-            if (direction === 'next' && currentPageIndex + step >= totalPages && currentPageIndex === totalPages - 1) return;
-            if (direction === 'prev' && currentPageIndex <= 0) return;
-
-            if (!musicWantsPlayback) startSong();
-
-            isFlipping = true;
-            playPaperSound();
-
-            if (isSpeaking) {
-                synth.cancel();
-                isSpeaking = false;
-                updateTTSUI();
-            }
-
-            const targetIndex = direction === 'next' ? 
-                Math.min(totalPages - 1, currentPageIndex + step) : 
-                Math.max(0, currentPageIndex - step);
-
-            pageFlipper.style.display = 'block';
-            pageFlipper.className = `page-flipper flip-${direction}${isDualView ? '' : ' single-page-flip'}`;
-
-            if (direction === 'next') {
-                renderSinglePageHTML(flipperFrontContent, BOOK_DATA.pages[currentPageIndex]);
-                renderSinglePageHTML(flipperBackContent, BOOK_DATA.pages[targetIndex]);
-            } else {
-                renderSinglePageHTML(flipperFrontContent, BOOK_DATA.pages[targetIndex]);
-                renderSinglePageHTML(flipperBackContent, BOOK_DATA.pages[currentPageIndex]);
-            }
-
-            const rotationDegree = direction === 'next' ? -180 : 180;
-            pageFlipper.classList.add('is-turning');
-            void pageFlipper.offsetWidth;
-            const pageTurnDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-                ? 0
-                : (isDualView ? 640 : 720);
-            pageFlipper.style.transition = `transform ${pageTurnDuration}ms cubic-bezier(0.22, 0.72, 0.2, 1)`;
-            pageFlipper.style.transform = `rotateY(${rotationDegree}deg)`;
-
-            setTimeout(() => {
-                currentPageIndex = targetIndex;
-                pageFlipper.style.transition = 'none';
-                pageFlipper.style.transform = 'rotateY(0deg)';
-                pageFlipper.style.display = 'none';
-                pageFlipper.classList.remove('is-turning');
-                isFlipping = false;
-                renderPages();
-            }, pageTurnDuration);
-        }
-
-        function handlePointerDown(e) {
-            if (isFlipping || !e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) return;
-            if (e.target.closest('button, input, select, textarea, a, .page-heart')) return;
-
-            isTrackingPointer = true;
-            isDragging = false;
-            activePointerId = e.pointerId;
-            dragStartX = e.clientX;
-            dragStartY = e.clientY;
-            dragCurrentX = dragStartX;
-            dragStartedAt = performance.now();
-        }
-
-        function handlePointerMove(e) {
-            if (!isTrackingPointer || e.pointerId !== activePointerId) return;
-
-            dragCurrentX = e.clientX;
-            const deltaX = dragCurrentX - dragStartX;
-            const deltaY = e.clientY - dragStartY;
-
-            if (!isDragging) {
-                if (Math.abs(deltaY) > 12 && Math.abs(deltaY) > Math.abs(deltaX)) {
-                    isTrackingPointer = false;
-                    activePointerId = null;
+            const renderEntry = (page, targetEl, targetFooter, targetNum, isRight) => {
+                if (!page) {
+                    targetEl.innerHTML = '';
+                    targetFooter.textContent = '';
+                    targetNum.textContent = '';
                     return;
                 }
-                if (Math.abs(deltaX) < 12 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.15) return;
-                isDragging = true;
-                bendShadowOverlay.style.opacity = '0.3';
+
+                const contentMap = {
+                    cover: `
+                        <div class="fairytale-cover relative h-full w-full rounded-2xl border border-rose-200/50 bg-gradient-to-br from-[#7b1232] via-[#c9184a] to-[#590d22] text-white overflow-hidden p-6 flex flex-col justify-center items-center shadow-2xl">
+                            <div class="cover-sparkles"></div>
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(255,218,148,0.16),transparent_35%)]"></div>
+                            <div class="relative text-center z-10">
+                                <div class="font-script text-5xl md:text-6xl text-rose-100/95 mb-2">A Lifetime</div>
+                                <div class="font-display tracking-[0.25em] text-[11px] uppercase text-rose-200/80 mb-5">of Silent Devotion</div>
+                                <div class="font-display text-2xl md:text-3xl font-semibold text-rose-50">${page.title}</div>
+                                <div class="w-20 h-px bg-rose-200/80 my-5 mx-auto"></div>
+                                <div class="font-serif italic text-rose-100/85 text-base md:text-lg">${page.subtitle}</div>
+                                <div class="mt-8 text-[10px] uppercase tracking-[0.5em] text-rose-100/80">${page.dedication}</div>
+                            </div>
+                        </div>
+                    `,
+                    intro: `
+                        <div class="h-full flex flex-col justify-center">
+                            <div class="text-center mb-4">
+                                <p class="font-script text-4xl text-rose-600">Dedicated to Sarah</p>
+                            </div>
+                            ${page.content}
+                        </div>
+                    `,
+                    toc: page.content,
+                    poem: page.content,
+                    epilogue: page.content
+                };
+
+                targetEl.innerHTML = contentMap[page.type] || page.content || '';
+                targetFooter.textContent = page.chapter || 'Chapter';
+                targetNum.textContent = isRight ? String((pageIndex * 2) + 2) : String((pageIndex * 2) + 1);
+            };
+
+            renderEntry(leftPage, leftPageContent, leftChapterFooter, leftPageNum, false);
+            renderEntry(rightPage, rightPageContent, rightChapterFooter, rightPageNum, true);
+        }
+
+        function updatePageDisplay() {
+            const currentPage = currentPageIndex + 1;
+            pageIndicator.textContent = `Page ${currentPage} of ${BOOK_DATA.pages.length}`;
+            pageScrubber.value = currentPage;
+            pageScrubber.max = BOOK_DATA.pages.length;
+            renderPage(currentPageIndex);
+            const progress = (currentPage / BOOK_DATA.pages.length) * 100;
+            readingProgress.style.width = `${progress}%`;
+        }
+
+        function nextPage() {
+            if (currentPageIndex < BOOK_DATA.pages.length - 1) {
+                currentPageIndex += 1;
+                updatePageDisplay();
             }
-
-            if (e.cancelable) e.preventDefault();
-
-            const dragRatio = Math.max(-1, Math.min(1, deltaX / (bookStage.clientWidth * 0.5)));
-            const previewAngle = dragRatio * 28;
-            bookStage.style.transform = `rotateY(${previewAngle * 0.12}deg) translateX(${dragRatio * 12}px)`;
-            bendShadowOverlay.style.background = deltaX < 0
-                ? `linear-gradient(90deg, transparent 60%, rgba(255, 77, 141, ${Math.abs(dragRatio) * 0.3}) 100%)`
-                : `linear-gradient(270deg, transparent 60%, rgba(255, 77, 141, ${Math.abs(dragRatio) * 0.3}) 100%)`;
-            bendShadowOverlay.style.opacity = Math.abs(dragRatio).toString();
         }
 
-        function handlePointerUp(e, cancelled = false) {
-            if (!isTrackingPointer || e.pointerId !== activePointerId) return;
-
-            isTrackingPointer = false;
-            activePointerId = null;
-            const wasDragging = isDragging;
-            isDragging = false;
-            const deltaX = dragCurrentX - dragStartX;
-            const elapsed = Math.max(1, performance.now() - dragStartedAt);
-            const velocity = deltaX / elapsed;
-            const threshold = Math.max(38, Math.min(70, bookStage.clientWidth * 0.14));
-
-            bookStage.style.transform = 'rotateY(0deg) translateX(0px)';
-            bendShadowOverlay.style.opacity = '0';
-            if (cancelled || !wasDragging) return;
-
-            if (deltaX < -threshold || (deltaX < -24 && velocity < -0.55)) turnPage('next');
-            else if (deltaX > threshold || (deltaX > 24 && velocity > 0.55)) turnPage('prev');
-        }
-
-        function handleHeartPointerDown(e) {
-            const heart = e.target.closest('.page-heart');
-            if (!heart || !e.isPrimary || (e.pointerType === 'mouse' && e.button !== 0)) return;
-
-            e.preventDefault();
-            e.stopPropagation();
-            draggedHeart = heart;
-            const heartRect = heart.getBoundingClientRect();
-            heartDragOffsetX = e.clientX - heartRect.left;
-            heartDragOffsetY = e.clientY - heartRect.top;
-            heart.classList.add('is-dragging');
-            heart.setPointerCapture(e.pointerId);
-        }
-
-        function handleHeartPointerMove(e) {
-            if (!draggedHeart || !draggedHeart.hasPointerCapture(e.pointerId)) return;
-            e.preventDefault();
-            const bounds = pageHearts.getBoundingClientRect();
-            const heartWidth = draggedHeart.offsetWidth;
-            const heartHeight = draggedHeart.offsetHeight;
-            const left = Math.max(0, Math.min(bounds.width - heartWidth, e.clientX - bounds.left - heartDragOffsetX));
-            const top = Math.max(0, Math.min(bounds.height - heartHeight, e.clientY - bounds.top - heartDragOffsetY));
-            draggedHeart.style.left = `${left}px`;
-            draggedHeart.style.top = `${top}px`;
-        }
-
-        function handleHeartPointerUp(e) {
-            if (!draggedHeart || !draggedHeart.hasPointerCapture(e.pointerId)) return;
-            draggedHeart.classList.remove('is-dragging');
-            draggedHeart.releasePointerCapture(e.pointerId);
-            draggedHeart = null;
-        }
-
-        function applyTheme(themeName) {
-            currentTheme = themeName;
-            document.body.className = "h-full flex flex-col justify-between relative overflow-hidden select-none";
-            if (themeName !== 'concert-night') {
-                document.body.classList.add(`theme-${themeName}`);
+        function prevPage() {
+            if (currentPageIndex > 0) {
+                currentPageIndex -= 1;
+                updatePageDisplay();
             }
-            localStorage.setItem('silentDevotionTheme', themeName);
         }
 
-        function toggleBookmark() {
-            const pageNum = currentPageIndex + 1;
-            const idx = bookmarks.indexOf(pageNum);
-            if (idx > -1) bookmarks.splice(idx, 1);
-            else {
-                bookmarks.push(pageNum);
-                bookmarks.sort((a, b) => a - b);
-            }
-            localStorage.setItem('silentDevotionBookmarks', JSON.stringify(bookmarks));
-            updateBookmarkRibbon();
-            renderBookmarksList();
+        function jumpToPage(index) {
+            currentPageIndex = Math.min(Math.max(index, 0), BOOK_DATA.pages.length - 1);
+            updatePageDisplay();
         }
 
-        function updateBookmarkRibbon() {
-            const pageNum = currentPageIndex + 1;
-            if (bookmarks.includes(pageNum)) {
-                activeRibbonBookmark.classList.remove('hidden');
+        document.getElementById('nextBtn').addEventListener('click', nextPage);
+        document.getElementById('prevBtn').addEventListener('click', prevPage);
+        pageScrubber.addEventListener('input', (e) => jumpToPage(Number(e.target.value) - 1));
+
+        document.getElementById('musicToggleBtn').addEventListener('click', () => {
+            const audio = document.getElementById('backgroundSong');
+            if (audio.paused) {
+                audio.play();
             } else {
-                activeRibbonBookmark.classList.add('hidden');
+                audio.pause();
             }
-        }
+        });
 
-        function renderBookmarksList() {
-            const container = document.getElementById('bookmarksList');
-            if (bookmarks.length === 0) {
-                container.innerHTML = `<p class="text-xs text-center opacity-60 py-8 font-serif">No saved bookmarks yet.</p>`;
-                return;
-            }
+        document.getElementById('soundToggleBtn').addEventListener('click', () => {
+            const soundIcon = document.getElementById('soundIcon');
+            soundIcon.classList.toggle('text-rose-300');
+            soundIcon.classList.toggle('text-rose-600');
+        });
 
-            container.innerHTML = bookmarks.map(pageNum => `
-                <div class="flex items-center justify-between p-3 rounded-xl border border-rose-800/30 hover:bg-rose-500/20 cursor-pointer transition" onclick="jumpToPage(${pageNum})">
-                    <div class="flex items-center space-x-2">
-                        <i data-lucide="bookmark-check" class="w-4 h-4 text-rose-400"></i>
-                        <span class="font-bold text-xs font-serif">Page ${pageNum}</span>
-                    </div>
-                    <span class="text-[10px] opacity-70 truncate max-w-[120px] font-serif">${BOOK_DATA.pages[pageNum - 1]?.title || 'Verse'}</span>
-                </div>
-            `).join('');
-            lucide.createIcons();
-        }
+        document.getElementById('themeCustomizerBtn').addEventListener('click', () => {
+            document.getElementById('themeDrawer').classList.remove('translate-x-full');
+            document.getElementById('themeDrawer').classList.add('translate-x-0');
+            document.getElementById('drawerBackdrop').classList.remove('hidden');
+        });
 
-        function renderTOC() {
-            const container = document.getElementById('tocList');
-            container.innerHTML = BOOK_DATA.pages.map((p, idx) => `
-                <button onclick="jumpToPage(${idx + 1})" class="w-full text-left p-3 rounded-xl hover:bg-rose-500/20 transition border-b border-rose-800/20 flex justify-between items-center font-serif">
-                    <div>
-                        <span class="font-bold text-xs gold-foil-text block">${p.chapter || 'Page'}</span>
-                        <span class="text-[11px] opacity-80 truncate block max-w-[180px]">${p.title || ''}</span>
-                    </div>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-200">p. ${idx + 1}</span>
-                </button>
-            `).join('');
-        }
+        document.getElementById('closeThemeBtn').addEventListener('click', () => {
+            document.getElementById('themeDrawer').classList.add('translate-x-full');
+            document.getElementById('themeDrawer').classList.remove('translate-x-0');
+            document.getElementById('drawerBackdrop').classList.add('hidden');
+        });
 
-        function jumpToPage(pageNum) {
-            currentPageIndex = pageNum - 1;
-            renderPages();
-            closeAllDrawers();
-        }
+        document.getElementById('fontIncBtn').addEventListener('click', () => {
+            fontSizeScale = Math.min(fontSizeScale + 0.1, 1.5);
+            updateFontScale();
+        });
 
-        // Text To Speech
-        let synth = window.speechSynthesis;
-        let isSpeaking = false;
-        let speechRate = 0.9;
-        let speechPitch = 0.82;
-        let speechVoices = [];
-        let selectedVoiceURI = localStorage.getItem('silentDevotionVoice') || '';
+        document.getElementById('fontDecBtn').addEventListener('click', () => {
+            fontSizeScale = Math.max(fontSizeScale - 0.1, 0.8);
+            updateFontScale();
+        });
 
-        function getPreferredVoice(voices) {
-            const englishVoices = voices.filter(voice => voice.lang.toLowerCase().startsWith('en'));
-            const preferred = englishVoices.length ? englishVoices : voices;
-            const masculineIndicators = /male|man|guy|david|james|daniel|george|ryan|christopher|mark|alex/i;
-            const feminineIndicators = /female|woman|zira|samantha|victoria|karen|susan|aria|jenny/i;
-            return preferred.find(voice => masculineIndicators.test(voice.name) && !feminineIndicators.test(voice.name))
-                || preferred.find(voice => !feminineIndicators.test(voice.name))
-                || preferred[0]
-                || null;
-        }
+        document.getElementById('fontResetBtn').addEventListener('click', () => {
+            fontSizeScale = 1;
+            updateFontScale();
+        });
 
-        function refreshSpeechVoices() {
-            if (!synth) return;
-            speechVoices = synth.getVoices();
-            const voiceSelect = document.getElementById('ttsVoiceSelect');
-            if (!voiceSelect) return;
-
-            const preferredVoice = getPreferredVoice(speechVoices);
-            if (!selectedVoiceURI && preferredVoice) selectedVoiceURI = preferredVoice.voiceURI;
-
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = 'Best available voice';
-            voiceSelect.replaceChildren(defaultOption);
-            speechVoices.forEach(voice => {
-                const option = document.createElement('option');
-                option.value = voice.voiceURI;
-                option.textContent = `${voice.name} (${voice.lang})`;
-                voiceSelect.appendChild(option);
+        document.querySelectorAll('.theme-select-btn').forEach((button) => {
+            button.addEventListener('click', () => {
+                currentTheme = button.dataset.theme;
+                updateThemeStyles();
             });
-            voiceSelect.value = speechVoices.some(voice => voice.voiceURI === selectedVoiceURI) ? selectedVoiceURI : '';
-        }
+        });
 
-        function toggleTTS() {
-            if (!synth) return;
-            if (isSpeaking) {
-                synth.cancel();
-                isSpeaking = false;
-                updateTTSUI();
-            } else {
-                speakActivePage();
-            }
-        }
-
-        function speakActivePage() {
-            if (!synth) return;
-            synth.cancel();
-
-            const p = BOOK_DATA.pages[currentPageIndex];
-            if (!p) return;
-            let text = "";
-            if (p.type === 'cover') text = `${p.title}. ${p.subtitle}. ${p.dedication}`;
-            else if (p.type === 'poem') text = `${p.chapter}. ${p.title}. ` + p.stanzas.map(s => s.replace(/<br>/g, ' ')).join(' ');
-            else {
-                const tmp = document.createElement('div');
-                tmp.innerHTML = p.content || "";
-                text = tmp.textContent || tmp.innerText || "";
-            }
-
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.rate = speechRate;
-            utterance.pitch = speechPitch;
-            const voice = speechVoices.find(item => item.voiceURI === selectedVoiceURI) || getPreferredVoice(speechVoices);
-            if (voice) {
-                utterance.voice = voice;
-                utterance.lang = voice.lang;
-            } else {
-                utterance.lang = 'en-US';
-            }
-            utterance.onend = () => { isSpeaking = false; updateTTSUI(); };
-            utterance.onerror = () => { isSpeaking = false; updateTTSUI(); };
-
-            synth.speak(utterance);
-            isSpeaking = true;
-            updateTTSUI();
-        }
-
-        function updateTTSUI() {
-            const bar = document.getElementById('ttsControlBar');
-            if (isSpeaking) bar.classList.remove('hidden');
-            else bar.classList.add('hidden');
-            document.body.classList.toggle('tts-active', isSpeaking);
-        }
-
-        function triggerHeartVowEffect() {
-            const msg = document.getElementById('vowResponseMsg');
-            if (msg) msg.classList.remove('opacity-0');
-            for (let i = 0; i < 25; i++) {
-                particles.push(new Particle(true));
-            }
-        }
-
-        function closeAllDrawers() {
-            tocDrawer.classList.add('-translate-x-full');
-            bookmarksDrawer.classList.add('-translate-x-full');
-            themeDrawer.classList.add('translate-x-full');
-            drawerBackdrop.classList.add('hidden');
-        }
-
-        const canvas = document.getElementById('bgCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        class Particle {
-            constructor(burst = false) {
-                this.reset(burst);
-            }
-
-            reset(burst = false) {
-                this.x = burst ? window.innerWidth / 2 + (Math.random() * 200 - 100) : Math.random() * window.innerWidth;
-                this.y = burst ? window.innerHeight / 2 + (Math.random() * 200 - 100) : Math.random() * window.innerHeight;
-                this.size = Math.random() * 8 + 6;
-                this.speedY = burst ? Math.random() * 1.2 + 0.6 : Math.random() * 0.35 + 0.12;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.angle = Math.random() * Math.PI * 2;
-                this.spin = (Math.random() - 0.5) * 0.02;
-                this.opacity = Math.random() * 0.28 + 0.12;
-                this.color = ['#ff4d8d', '#ff8fab', '#ffc2d1'][Math.floor(Math.random() * 3)];
-            }
-
-            update() {
-                this.y += this.speedY;
-                this.x += Math.sin(this.y * 0.01) + this.speedX;
-                this.angle += this.spin;
-
-                if (this.y > canvas.height + 20) {
-                    this.y = -20;
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                ctx.globalAlpha = this.opacity;
-
-                ctx.beginPath();
-                ctx.moveTo(0, this.size * 0.85);
-                ctx.bezierCurveTo(-this.size * 1.5, -this.size * 0.1, -this.size * 0.9, -this.size, 0, -this.size * 0.35);
-                ctx.bezierCurveTo(this.size * 0.9, -this.size, this.size * 1.5, -this.size * 0.1, 0, this.size * 0.85);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-
-                ctx.restore();
-            }
-        }
-
-        function initParticles() {
-            resizeCanvas();
-            particles = [];
-            for (let i = 0; i < 26; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animateCanvas);
-        }
-
-        function bindEvents() {
-            // Book touch / pointer events
-            bookStage.addEventListener('pointerdown', handlePointerDown);
-            window.addEventListener('pointermove', handlePointerMove);
-            window.addEventListener('pointerup', handlePointerUp);
-            window.addEventListener('pointercancel', (e) => handlePointerUp(e, true));
-            pageHearts.addEventListener('pointerdown', handleHeartPointerDown);
-            pageHearts.addEventListener('pointermove', handleHeartPointerMove);
-            pageHearts.addEventListener('pointerup', handleHeartPointerUp);
-            pageHearts.addEventListener('pointercancel', handleHeartPointerUp);
-
-            document.getElementById('prevEdgeTap').addEventListener('click', () => turnPage('prev'));
-            document.getElementById('nextEdgeTap').addEventListener('click', () => turnPage('next'));
-            prevBtn.addEventListener('click', () => turnPage('prev'));
-            nextBtn.addEventListener('click', () => turnPage('next'));
-
-            // Keyboard navigation
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') turnPage('prev');
-                if (e.key === 'ArrowRight') turnPage('next');
-            });
-
-            // Scrubber
-            pageScrubber.addEventListener('input', (e) => {
-                const nextPageIndex = parseInt(e.target.value, 10) - 1;
-                if (nextPageIndex !== currentPageIndex && !musicWantsPlayback) startSong();
-                currentPageIndex = nextPageIndex;
-                renderPages();
-            });
-
-            // View mode toggle
-            viewModeBtn.addEventListener('click', () => {
-                if (userViewPreference === 'auto') userViewPreference = isDualView ? 'single' : 'dual';
-                else if (userViewPreference === 'dual') userViewPreference = 'single';
-                else userViewPreference = 'dual';
-                updateLayoutMode();
-            });
-
-            // Music Widget Button
-            document.getElementById('musicToggleBtn').addEventListener('click', toggleSong);
-
-            // FX sound toggle
-            document.getElementById('soundToggleBtn').addEventListener('click', () => {
-                isFxMuted = !isFxMuted;
-                document.getElementById('soundIcon').setAttribute('data-lucide', isFxMuted ? 'volume-x' : 'sparkles');
-                lucide.createIcons();
-            });
-
-            // TTS
-            document.getElementById('ttsPlayBtn').addEventListener('click', toggleTTS);
-            document.getElementById('ttsPauseBtn').addEventListener('click', () => {
-                if (synth) synth.cancel();
-                isSpeaking = false;
-                updateTTSUI();
-            });
-            document.getElementById('ttsRateSelect').addEventListener('change', (e) => {
-                speechRate = parseFloat(e.target.value);
-                if (isSpeaking) speakActivePage();
-            });
-            document.getElementById('ttsVoiceSelect').addEventListener('change', (e) => {
-                selectedVoiceURI = e.target.value;
-                localStorage.setItem('silentDevotionVoice', selectedVoiceURI);
-                if (isSpeaking) speakActivePage();
-            });
-            if (synth) {
-                refreshSpeechVoices();
-                synth.onvoiceschanged = refreshSpeechVoices;
-            }
-
-            // Bookmark Ribbon
-            activeRibbonBookmark.addEventListener('click', toggleBookmark);
-
-            // Drawers
-            document.getElementById('tocBtn').addEventListener('click', () => {
-                renderTOC();
-                tocDrawer.classList.remove('-translate-x-full');
-                drawerBackdrop.classList.remove('hidden');
-            });
-
-            document.getElementById('bookmarkBtn').addEventListener('click', () => {
-                renderBookmarksList();
-                bookmarksDrawer.classList.remove('-translate-x-full');
-                drawerBackdrop.classList.remove('hidden');
-            });
-
-            document.getElementById('themeCustomizerBtn').addEventListener('click', () => {
-                themeDrawer.classList.remove('translate-x-full');
-                drawerBackdrop.classList.remove('hidden');
-            });
-
-            document.getElementById('closeTocBtn').addEventListener('click', closeAllDrawers);
-            document.getElementById('closeBookmarksBtn').addEventListener('click', closeAllDrawers);
-            document.getElementById('closeThemeBtn').addEventListener('click', closeAllDrawers);
-            drawerBackdrop.addEventListener('click', closeAllDrawers);
-
-            // Themes
-            document.querySelectorAll('.theme-select-btn').forEach(btn => {
-                btn.addEventListener('click', () => applyTheme(btn.getAttribute('data-theme')));
-            });
-
-            // Font sizing
-            document.getElementById('fontIncBtn').addEventListener('click', () => {
-                if (fontSizeScale < 1.35) {
-                    fontSizeScale += 0.08;
-                    document.getElementById('fontSizeLabel').textContent = `${Math.round(fontSizeScale * 100)}%`;
-                    localStorage.setItem('silentDevotionFontSize', fontSizeScale);
-                    renderPages();
-                }
-            });
-
-            document.getElementById('fontDecBtn').addEventListener('click', () => {
-                if (fontSizeScale > 0.75) {
-                    fontSizeScale -= 0.08;
-                    document.getElementById('fontSizeLabel').textContent = `${Math.round(fontSizeScale * 100)}%`;
-                    localStorage.setItem('silentDevotionFontSize', fontSizeScale);
-                    renderPages();
-                }
-            });
-
-            document.getElementById('fontResetBtn').addEventListener('click', () => {
-                fontSizeScale = 1.0;
-                document.getElementById('fontSizeLabel').textContent = '100%';
-                localStorage.setItem('silentDevotionFontSize', fontSizeScale);
-                renderPages();
-            });
-
-            window.addEventListener('resize', () => {
-                resizeCanvas();
-                updateLayoutMode();
-            });
-        }
-
-        // Window Load Entry point
-        window.onload = function() {
-            lucide.createIcons();
-            applyTheme(currentTheme);
-            initParticles();
-            animateCanvas();
-            bindEvents();
-            updateLayoutMode();
-            renderTOC();
-        };
+        updateThemeStyles();
+        updateFontScale();
+        updatePageDisplay();
     </script>
 </body>
 </html>
